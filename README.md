@@ -1,2 +1,2 @@
 # StarShooter
-Create and engine of shooter type game for shool project
+Create an engine of shooter type game for school project
