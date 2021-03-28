@@ -57,6 +57,9 @@
     <ClCompile Include="AnimationComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Player_projectile.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -85,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="AnimationComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Player_projectile.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

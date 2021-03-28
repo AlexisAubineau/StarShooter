@@ -2,6 +2,7 @@
 #define PLAYER_H
 
 #include "Entity.h"
+#include "Player_projectile.h"
 
 class Player :
 	public Entity
@@ -19,6 +20,7 @@ public:
 
 	//Functions
 
+	void PlayerShoot();
 	virtual void update(const float& dt);
 };
 

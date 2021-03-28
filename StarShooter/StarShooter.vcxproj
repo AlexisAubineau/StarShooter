@@ -159,6 +159,7 @@
     <ClCompile Include="MainMenuState.cpp" />
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Player_projectile.cpp" />
     <ClCompile Include="State.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Player_projectile.h" />
     <ClInclude Include="State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
