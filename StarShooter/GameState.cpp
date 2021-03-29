@@ -19,7 +19,7 @@ void GameState::initKeybinds()
 void GameState::initTextures()
 {
 	if (!this->textures["PLAYER_SHEET"].loadFromFile(playerIdlePath)) {
-		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
+		std::cout << "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE" << std::endl;;
 	}
 }
 

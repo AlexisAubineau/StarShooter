@@ -16,7 +16,7 @@ void MainMenuState::initBackground()
 	);
 
 	if (!this->backgroundTexture.loadFromFile(backgroundPath)) {
-		throw"ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE";
+		std::cout << "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE" << std::endl;
 	}
 
 	this->background.setTexture(&this->backgroundTexture);
@@ -25,7 +25,7 @@ void MainMenuState::initBackground()
 void MainMenuState::initFonts()
 {
 	if (!this->font.loadFromFile(fontPath)) {
-		throw("ERROR::MAINMENUSTATE COULD'NT LOAD FONT");
+		std::cout << "ERROR::MAINMENUSTATE COULD'NT LOAD FONT" << std::endl;
 	}
 }
 
