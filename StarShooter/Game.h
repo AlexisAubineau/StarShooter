@@ -1,6 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
+#include "Config.h"
 #include "MainMenuState.h"
  
 class Game
@@ -20,6 +21,9 @@ private:
 	std::stack<State*> states;
 
 	std::map<std::string, int> supportedKeys;
+	
+	std::string windowSettingsPath = windowSettingsPathGv;
+	std::string keySupportedPath = keySupportedPathGv;
 	
 	//Initialization
 	void initVariables();

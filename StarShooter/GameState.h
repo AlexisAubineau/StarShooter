@@ -2,12 +2,16 @@
 #define GAMESTATE_H
 
 #include "State.h"
+#include "Config.h"
 
 class GameState :
 	public State
 {
 private:
+	//Variables
 	Player* player;
+	std::string playerIdlePath = playerIdlePathGv;
+	std::string gameStateKeybindingPath = gameStateKeybindingPathGv;
 
 	//Functions
 	void initKeybinds();

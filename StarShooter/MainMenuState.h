@@ -3,6 +3,7 @@
 
 #include "GameState.h"
 #include "Button.h"
+#include "Config.h"
 
 class MainMenuState :
 	public State
@@ -15,15 +16,16 @@ private:
 
 	std::map<std::string, Button*> buttons;
 
+	sf::String backgroundPath = backgroundPathGv;
+	sf::String fontPath = fontPathGv;
+	std::string mainMenuKeybindingPath = mainMenuKeybindingPathGv;
+
 	//Functions
 	void initVariables();
 	void initBackground();
 	void initFonts();
 	void initKeybinds();
 	void initButtons();
-
-	sf::String backgroundPath = "Resources/Images/Backgrounds/bg1.png";
-	sf::String fontPath = "Fonts/Dosis-Light.ttf";
 
 public:
 	MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);

@@ -15,7 +15,8 @@ void Game::initWindow()
 {
 	/*Create a SFML Window using option from a window.ini file.*/
 
-    std::ifstream ifs("Config/window.ini");
+    
+    std::ifstream ifs(windowSettingsPath);
     this->videoModes = sf::VideoMode::getFullscreenModes();
 
     std::string title = "None";
@@ -49,7 +50,7 @@ void Game::initWindow()
 
 void Game::initKeys()
 {
-    std::ifstream ifs("Config/supported_keys.ini");
+    std::ifstream ifs(keySupportedPath);
 
     if (ifs.is_open()) {
         std::string key = "";

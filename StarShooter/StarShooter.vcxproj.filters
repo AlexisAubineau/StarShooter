@@ -60,6 +60,9 @@
     <ClCompile Include="ProjectileComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Config.cpp">
+      <Filter>Fichiers de ressources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="ProjectileComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Fichiers de ressources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
