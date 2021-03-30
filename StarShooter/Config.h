@@ -6,15 +6,17 @@ class Config
 {
 	
 public:
-	// Variable;
-	
+	//Config file;
 	const std::string windowSettingsPath = "Config/window.ini";
 	const std::string keySupportedPath = "Config/supported_keys.ini";
 	const std::string gameStateKeybindingPath = "Config/gamestate_keybinds.ini";
 	const std::string mainMenuKeybindingPath = "Config/mainmenustate_keybinds.ini";
-	const std::string playerIdlePath = "Resources/Images/Sprites/Player/SHIP_IDLE_SHEET.png";
 
+	//Sprites
+	const std::string playerIdlePath = "Resources/Images/Sprites/Player/SHIP_IDLE_SHEET.png";
 	const sf::String backgroundPath = "Resources/Images/Backgrounds/bg1.png";
+
+	// Font
 	const sf::String fontPath = "Fonts/Dosis-Light.ttf";
 	
 	~Config() = default;
