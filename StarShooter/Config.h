@@ -15,6 +15,7 @@ public:
 	//Sprites
 	const std::string playerIdlePath = "Resources/Images/Sprites/Player/SHIP_IDLE_SHEET.png";
 	const sf::String backgroundPath = "Resources/Images/Backgrounds/bg1.png";
+	const std::string ProjectilePath = "Resources/Images/Sprites/SHIP_PROJECTILE_SHEET.png";
 
 	// Font
 	const sf::String fontPath = "Fonts/Dosis-Light.ttf";
