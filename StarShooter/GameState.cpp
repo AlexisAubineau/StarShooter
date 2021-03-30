@@ -3,7 +3,7 @@
 //Initializer Functions
 void GameState::initKeybinds()
 {
-	std::ifstream ifs(gameStateKeybindingPath);
+	std::ifstream ifs(config->gameStateKeybindingPath);
 
 	if (ifs.is_open()) {
 		std::string key = "";
@@ -18,7 +18,7 @@ void GameState::initKeybinds()
 
 void GameState::initTextures()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile(playerIdlePath)) {
+	if (!this->textures["PLAYER_SHEET"].loadFromFile(config->playerIdlePath)) {
 		std::cout << "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE" << std::endl;;
 	}
 }

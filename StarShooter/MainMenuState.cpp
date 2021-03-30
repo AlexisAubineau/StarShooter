@@ -14,8 +14,8 @@ void MainMenuState::initBackground()
 			static_cast<float>(this->window->getSize().y)
 		)
 	);
-
-	if (!this->backgroundTexture.loadFromFile(backgroundPath)) {
+	
+	if (!this->backgroundTexture.loadFromFile(config->backgroundPath)) {
 		std::cout << "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE" << std::endl;
 	}
 
@@ -24,14 +24,14 @@ void MainMenuState::initBackground()
 
 void MainMenuState::initFonts()
 {
-	if (!this->font.loadFromFile(fontPath)) {
+	if (!this->font.loadFromFile(config->fontPath)) {
 		std::cout << "ERROR::MAINMENUSTATE COULD'NT LOAD FONT" << std::endl;
 	}
 }
 
 void MainMenuState::initKeybinds()
 {
-	std::ifstream ifs(mainMenuKeybindingPath);
+	std::ifstream ifs(config->mainMenuKeybindingPath);
 
 	if (ifs.is_open()) {
 		std::string key = "";

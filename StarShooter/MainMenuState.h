@@ -16,9 +16,7 @@ private:
 
 	std::map<std::string, Button*> buttons;
 
-	sf::String backgroundPath = backgroundPathGv;
-	sf::String fontPath = fontPathGv;
-	std::string mainMenuKeybindingPath = mainMenuKeybindingPathGv;
+	Config* config = new Config;;
 
 	//Functions
 	void initVariables();

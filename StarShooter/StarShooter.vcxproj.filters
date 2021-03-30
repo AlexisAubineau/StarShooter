@@ -60,9 +60,6 @@
     <ClCompile Include="ProjectileComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Config.cpp">
-      <Filter>Fichiers de ressources</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">

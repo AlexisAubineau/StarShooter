@@ -10,13 +10,13 @@ class GameState :
 private:
 	//Variables
 	Player* player;
-	std::string playerIdlePath = playerIdlePathGv;
-	std::string gameStateKeybindingPath = gameStateKeybindingPathGv;
 
 	//Functions
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
+
+	Config* config = new Config;;
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);

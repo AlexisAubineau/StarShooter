@@ -21,9 +21,8 @@ private:
 	std::stack<State*> states;
 
 	std::map<std::string, int> supportedKeys;
-	
-	std::string windowSettingsPath = windowSettingsPathGv;
-	std::string keySupportedPath = keySupportedPathGv;
+
+	Config* config = new Config;
 	
 	//Initialization
 	void initVariables();
