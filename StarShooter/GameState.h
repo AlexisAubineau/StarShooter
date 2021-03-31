@@ -16,7 +16,7 @@ private:
 	void initTextures();
 	void initPlayers();
 
-	Config* config = new Config;;
+	Config* config = new Config;
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
