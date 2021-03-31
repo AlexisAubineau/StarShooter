@@ -27,7 +27,7 @@ public:
 	//Functions
 
 	void setLifePlayer();
-	void getLifePlayer();
+	float getLifePlayer();
 	void PlayerShoot();
 	virtual void update(const float& dt);
 

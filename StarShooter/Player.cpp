@@ -26,6 +26,10 @@ Player::Player(float x, float y)
 
 	this->createMovementComponent(300.f, 15.f, 5.f);
 	this->createAnimationComponent(this->textures["PLAYER_SHEET"]);
+
+	this->setLifePlayer();
+
+	std::cout << life << std::endl;
 	
 	this->animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 }
@@ -40,9 +44,9 @@ void Player::setLifePlayer()
 	this->life = 100.f;
 }
 
-void Player::getLifePlayer()
+float Player::getLifePlayer()
 {
-	this->life;
+	return life;
 }
 
 
