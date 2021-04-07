@@ -1,9 +1,12 @@
 #ifndef MAINMENUSTATE_H
 #define MAINMENUSTATE_H
 
+#include <iostream>
+#include <fstream>
+
 #include "GameState.h"
+#include "State.h"
 #include "Button.h"
-#include "Config.h"
 
 class MainMenuState :
 	public State
@@ -15,8 +18,6 @@ private:
 	sf::Font font;
 
 	std::map<std::string, Button*> buttons;
-
-	Config* config = new Config;;
 
 	//Functions
 	void initVariables();

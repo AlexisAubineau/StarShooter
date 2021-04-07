@@ -1,9 +1,9 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "Config.h"
+#include <iostream>
+
 #include "Entity.h"
-#include "ProjectileComponent.h"
 
 class Player :
 	public Entity
@@ -16,7 +16,9 @@ private:
 	void initComponents();
 	void initTexture();
 
-	Config* config = new Config;
+	//Initializer Components
+	AnimationComponent* animationComponent;
+	MovementComponent* movementComponent;
 
 protected:
 
@@ -25,13 +27,11 @@ public:
 	virtual ~Player();
 
 	//Functions
-
+	void move(const float dir_x, const float dir_y, const float& dt);
 	void setLifePlayer();
 	float getLifePlayer();
 	void PlayerShoot();
 	virtual void update(const float& dt);
-
-	std::map<std::string, sf::Texture> textures;
 };
 
 #endif

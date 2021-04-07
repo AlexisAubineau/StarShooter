@@ -1,8 +1,10 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <fstream>
+
 #include "State.h"
-#include "Config.h"
+#include "PlayerGUI.h"
 
 class GameState :
 	public State
@@ -10,13 +12,12 @@ class GameState :
 private:
 	//Variables
 	Player* player;
+	PlayerGUI* player_gui;
 
 	//Functions
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
-
-	Config* config = new Config;
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);

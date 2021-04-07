@@ -16,7 +16,7 @@ MovementComponent::~MovementComponent()
 //Accesors
 const sf::Vector2f& MovementComponent::getVelocity() const
 {
-	return this->velocity;
+	return velocity;
 }
 
 //Functions
@@ -24,8 +24,8 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
 {
 	/* Accelerate a sprite until ir reaches the maxVelocity */
 
-	this->velocity.x += this->acceleration * dir_x;
-	this->velocity.y += this->acceleration * dir_y;
+	velocity.x += acceleration * dir_x;
+	velocity.y += acceleration * dir_y;
 }
 
 
@@ -36,52 +36,52 @@ void MovementComponent::update(const float& dt)
 		Move the sprite.
 	*/
 	
-	if (this->velocity.x > 0.f) //Check for positive x 
+	if (velocity.x > 0.f) //Check for positive x 
 	{
 		//Max Velocity check 
-		if (this->velocity.x > this->maxVelocity)
-			this->velocity.x = this->maxVelocity;
+		if (velocity.x > maxVelocity)
+			velocity.x = maxVelocity;
 
 		//Deceleration
-		this->velocity.x -= deceleration;
-		if (this->velocity.x < 0.f)
-			this->velocity.x = 0.f;
+		velocity.x -= deceleration;
+		if (velocity.x < 0.f)
+			velocity.x = 0.f;
 	}
-	else if (this->velocity.x < 0.f) //Check for negative x 
+	else if (velocity.x < 0.f) //Check for negative x 
 	{
 		//Max velocity check
-		if (this->velocity.x < -this->maxVelocity)
-			this->velocity.x = -this->maxVelocity;
+		if (velocity.x < -maxVelocity)
+			velocity.x = -maxVelocity;
 		
 		//Deceleration
-		this->velocity.x += deceleration;
-		if (this->velocity.x > 0.f)
-			this->velocity.x = 0.f;
+		velocity.x += deceleration;
+		if (velocity.x > 0.f)
+			velocity.x = 0.f;
 	}
-	if (this->velocity.y > 0.f) //Check for positive y 
+	if (velocity.y > 0.f) //Check for positive y 
 	{
 		//Max Velocity check
-		if (this->velocity.y > this->maxVelocity)
-			this->velocity.y = this->maxVelocity;
+		if (velocity.y > maxVelocity)
+			velocity.y = maxVelocity;
 
 		//Deceleration
-		this->velocity.y -= deceleration;
-		if (this->velocity.y < 0.f)
-			this->velocity.y = 0.f;
+		velocity.y -= deceleration;
+		if (velocity.y < 0.f)
+			velocity.y = 0.f;
 	}
-	else if (this->velocity.y < 0.f) //Check for negative y 
+	else if (velocity.y < 0.f) //Check for negative y 
 	{
 		//Max velocity check
-		if (this->velocity.y < -this->maxVelocity)
-			this->velocity.y = -this->maxVelocity;
+		if (velocity.y < -maxVelocity)
+			velocity.y = -maxVelocity;
 
 		//Deceleration
-		this->velocity.y += deceleration;
-		if (this->velocity.y > 0.f)
-			this->velocity.y = 0.f;
+		velocity.y += deceleration;
+		if (velocity.y > 0.f)
+			velocity.y = 0.f;
 	}
 	
 	//Final move
-	this->sprite.move(this->velocity * dt); //Uses velocity
+	sprite.move(velocity * dt); //Uses velocity
 }
  

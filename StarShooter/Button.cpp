@@ -5,29 +5,30 @@ Button::Button(float x, float y, float width, float height,
 	sf::Color text_idle_color, sf::Color text_hover_color, sf::Color text_active_color, 
 	sf::Color idle_color, sf::Color hover_color, sf::Color active_color)
 {
-	this->buttonState = BTN_IDLE;
+	buttonState = BTN_IDLE;
 
-	this->shape.setPosition(sf::Vector2f(x, y));
-	this->shape.setSize(sf::Vector2f(width, height));
-	this->shape.setFillColor(idle_color);
+	shape.setPosition(sf::Vector2f(x, y));
+	shape.setSize(sf::Vector2f(width, height));
+	shape.setFillColor(idle_color);
 
 	this->font = font;
-	this->text.setFont(*this->font);
+	
+	this->text.setFont(*font);
 	this->text.setString(text);
 	this->text.setFillColor(text_idle_color);
 	this->text.setCharacterSize(character_size);
 	this->text.setPosition(
-		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
-		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
+		shape.getPosition().x + (shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
+		shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
 	);
 	
-	this->textIdleColor = text_idle_color;
-	this->textHoverColor = text_hover_color;
-	this->textActiveColor = text_active_color;
+	textIdleColor = text_idle_color;
+	textHoverColor = text_hover_color;
+	textActiveColor = text_active_color;
 
-	this->idleColor = idle_color;
-	this->hoverColor = hover_color;
-	this->activeColor = active_color;
+	idleColor = idle_color;
+	hoverColor = hover_color;
+	activeColor = active_color;
 }
 
 Button::~Button()
@@ -39,7 +40,7 @@ Button::~Button()
 
 const bool Button::isPressed() const
 {
-	if (this->buttonState == BTN_ACTIVE)
+	if (buttonState == BTN_ACTIVE)
 		return true;
 
 	return false;
@@ -52,44 +53,44 @@ void Button::update(const sf::Vector2f& mousePos)
 	/*Update the booleans for hover and pressed*/
 
 	//Idle
-	this->buttonState = BTN_IDLE;
+	buttonState = BTN_IDLE;
 
 	//Hover
-	if (this->shape.getGlobalBounds().contains(mousePos)) {
-		this->buttonState = BTN_HOVER;
+	if (shape.getGlobalBounds().contains(mousePos)) {
+		buttonState = BTN_HOVER;
 
 		//Active
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
-			this->buttonState = BTN_ACTIVE;
+			buttonState = BTN_ACTIVE;
 		}
 	}
 
-	switch (this->buttonState)
+	switch (buttonState)
 	{
 	case BTN_IDLE:
-		this->shape.setFillColor(this->idleColor);
-		this->text.setFillColor(this->textIdleColor);
+		shape.setFillColor(idleColor);
+		text.setFillColor(textIdleColor);
 		break;
 
 	case BTN_HOVER:
-		this->shape.setFillColor(this->hoverColor);
-		this->text.setFillColor(this->textHoverColor);
+		shape.setFillColor(hoverColor);
+		text.setFillColor(textHoverColor);
 		break;
 
 	case BTN_ACTIVE:
-		this->shape.setFillColor(this->activeColor);
-		this->text.setFillColor(this->textActiveColor);
+		shape.setFillColor(activeColor);
+		text.setFillColor(textActiveColor);
 		break;
 
 	default:
-		this->shape.setFillColor(sf::Color::Red);
-		this->text.setFillColor(sf::Color::Blue);
+		shape.setFillColor(sf::Color::Red);
+		text.setFillColor(sf::Color::Blue);
 		break;
 	}
 }
 
 void Button::render(sf::RenderTarget* target)
 {
-	target->draw(this->shape);
-	target->draw(this->text);
+	target->draw(shape);
+	target->draw(text);
 }

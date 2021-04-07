@@ -5,28 +5,28 @@ State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys
 	this->window = window;
 	this->supportedKeys = supportedKeys;
 	this->states = states;
-	this->quit = false;
+	quit = false;
 }
 
 State::~State()
 {
-	
+	delete config;
 }
 
 const bool& State::getQuit() const
 {
-	return this->quit;
+	return quit;
 }
 
 void State::endState()
 {
-	this->quit = true;
+	quit = true;
 }
 
-void State::updateMousePosition()
+void State::update_mouse_position()
 {
-	this->mousePosScreen = sf::Mouse::getPosition();
-	this->mousePosWindow = sf::Mouse::getPosition(*this->window);
-	this->mousePosView = this->window->mapPixelToCoords(sf::Mouse::getPosition(*this->window));
+	mousePosScreen = sf::Mouse::getPosition();
+	mousePosWindow = sf::Mouse::getPosition(*window);
+	mousePosView = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
 }
 

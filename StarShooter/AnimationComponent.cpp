@@ -1,4 +1,5 @@
 #include "AnimationComponent.h"
+#include "Animation.h"
 
 AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_sheet)
 	:sprite(sprite), textureSheet(texture_sheet)
@@ -8,7 +9,7 @@ AnimationComponent::AnimationComponent(sf::Sprite& sprite, sf::Texture& texture_
 
 AnimationComponent::~AnimationComponent()
 {
-	for (auto &i : this->animations)
+	for (auto &i : animations)
 	{
 		delete i.second;
 	}
@@ -21,8 +22,8 @@ void AnimationComponent::addAnimation(
 	float animationTimer, 
 	int start_frame_x, int start_frame_y, int frames_x, int frames_y, int width, int height)
 {
-	this->animations[key] = new Animation(
-		this->sprite, this->textureSheet, 
+		animations[key] = new Animation(
+		sprite, textureSheet, 
 		animationTimer, 
 		start_frame_x, start_frame_y, frames_x, frames_y, width, height
 	);
@@ -30,5 +31,5 @@ void AnimationComponent::addAnimation(
 
 void AnimationComponent::play(const std::string key, const float& dt)
 {
-	this->animations[key]->play(dt);
+	animations[key]->play(dt);
 }

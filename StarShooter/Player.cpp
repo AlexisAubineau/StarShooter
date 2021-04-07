@@ -12,7 +12,7 @@ void Player::initComponents()
 
 void Player::initTexture()
 {
-	if (!this->textures["PLAYER_SHEET"].loadFromFile(config->playerIdlePath)) {
+	if (!component->textures["PLAYER_SHEET"].loadFromFile(config->playerIdlePath)) {
 		throw "ERROR::GAME_STATE::COULD_NOT_LOAD_PLAYER_TEXTURE";
 	}
 }
@@ -20,28 +20,36 @@ void Player::initTexture()
 //Contructors / Destructors
 Player::Player(float x, float y)
 {
-	this->initVariables();
-	this->initTexture();
-	this->setPosition(x, y);
+	initVariables();
+	initTexture();
+	setPosition(x, y);
 
-	this->createMovementComponent(300.f, 15.f, 5.f);
-	this->createAnimationComponent(this->textures["PLAYER_SHEET"]);
-
-	this->setLifePlayer();
+	movementComponent = component->createMovementComponent(300.f, 15.f, 5.f);
+	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
+	
+	setLifePlayer();
 
 	std::cout << life << std::endl;
 	
-	this->animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
+	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 }
 
 Player::~Player()
 {
+	delete movementComponent;
+	delete animationComponent;
+}
 
+void Player::move(const float dir_x, const float dir_y, const float& dt)
+{
+	if (movementComponent) {
+		movementComponent->move(dir_x, dir_y, dt); //Sets velocity
+	}
 }
 
 void Player::setLifePlayer()
 {
-	this->life = 100.f;
+	life = 100.f;
 }
 
 float Player::getLifePlayer()
@@ -58,8 +66,7 @@ void Player::PlayerShoot()
 
 void Player::update(const float& dt)
 {
-	this->movementComponent->update(dt);
-
-	this->animationComponent->play("SHIP_IDLE", dt);
+	movementComponent->update(dt);
+	animationComponent->play("SHIP_IDLE", dt);
 }
  

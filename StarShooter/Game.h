@@ -1,9 +1,15 @@
 #ifndef GAME_H
 #define GAME_H
+#include<vector>
+#include<stack>
+#include<map>
+#include <iostream>
+#include <fstream>
 
-#include "Config.h"
 #include "MainMenuState.h"
- 
+#include "Config.h"
+#include "State.h"
+
 class Game
 {
 private:
