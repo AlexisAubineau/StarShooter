@@ -16,7 +16,6 @@ public:
 	virtual ~Entity();
 
 	//Variables
-	float life;
  	
 	Config* config = new Config;
 
@@ -26,6 +25,7 @@ public:
 
 	//Functions
 	virtual void setPosition(const float x, const float y);
+	float Life(float life);
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);

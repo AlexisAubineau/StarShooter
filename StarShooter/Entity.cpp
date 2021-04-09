@@ -22,6 +22,11 @@ void Entity::setPosition(const float x, const float y)
 	component->sprite.setPosition(x, y);
 }
 
+float Entity::Life(float life)
+{
+	return life;
+}
+
 void Entity::update(const float& dt)
 {
 }

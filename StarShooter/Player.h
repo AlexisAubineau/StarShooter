@@ -10,6 +10,7 @@ class Player :
 {
 private:
 	//Variables
+	float health = 100.f;
 
 	//Initializer functions
 	void initVariables();
@@ -28,9 +29,7 @@ public:
 
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);
-	void setLifePlayer();
-	float getLifePlayer();
-	void PlayerShoot();
+	void attack();
 	virtual void update(const float& dt);
 };
 

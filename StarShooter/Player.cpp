@@ -26,10 +26,8 @@ Player::Player(float x, float y)
 
 	movementComponent = component->createMovementComponent(300.f, 15.f, 5.f);
 	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
-	
-	setLifePlayer();
 
-	std::cout << life << std::endl;
+	std::cout << health << std::endl;
 	
 	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 }
@@ -47,18 +45,7 @@ void Player::move(const float dir_x, const float dir_y, const float& dt)
 	}
 }
 
-void Player::setLifePlayer()
-{
-	life = 100.f;
-}
-
-float Player::getLifePlayer()
-{
-	return life;
-}
-
-
-void Player::PlayerShoot()
+void Player::attack()
 {
 }
 
@@ -68,5 +55,7 @@ void Player::update(const float& dt)
 {
 	movementComponent->update(dt);
 	animationComponent->play("SHIP_IDLE", dt);
+	Life(health);
+	
 }
  
