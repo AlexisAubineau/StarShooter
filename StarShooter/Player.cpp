@@ -24,13 +24,15 @@ Player::Player(float x, float y)
 	initTexture();
 	setPosition(x, y);
 
+	// Movement Component Player
 	movementComponent = component->createMovementComponent(300.f, 15.f, 5.f);
-	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
-	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET","SHIP_PROJECTILE",10.f,0,0,4,0,120,90,10.f,10.f);
 
-	std::cout << health << std::endl;
-	
+	// Animation Player
+	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
 	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
+
+	// Component Projectile Player 
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 10.f, 10.f);
 }
 
 Player::~Player()
@@ -51,7 +53,8 @@ void Player::attack()
 {
 	if (projectileComponent)
 	{
-		projectileComponent->FireProjectile();
+		projectileComponent->FireProjectile(getPosition().x, getPosition().y);
+		std::cout << "Hey je tire fdp !" << std::endl;
 	}
 	
 }
@@ -64,5 +67,9 @@ void Player::update(const float& dt)
 	animationComponent->play("SHIP_IDLE", dt);
 	Life(health);
 	
+}
+
+void Player::updateInput(const float& dt)
+{
 }
  

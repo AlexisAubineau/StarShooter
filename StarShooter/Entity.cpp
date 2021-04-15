@@ -22,6 +22,12 @@ void Entity::setPosition(const float x, const float y)
 	component->sprite.setPosition(x, y);
 }
 
+sf::Vector2f Entity::getPosition()
+{
+	auto position = component->sprite.getPosition();
+	return position;
+}
+
 float Entity::Life(float life)
 {
 	return life;

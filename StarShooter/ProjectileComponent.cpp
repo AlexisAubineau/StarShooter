@@ -1,8 +1,12 @@
 #include "ProjectileComponent.h"
 
+#include <iostream>
+
+#include "Bullet.h"
+
 
 ProjectileComponent::ProjectileComponent(std::string textureName, std::string animationKey, float timer,
-	int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity, float damage)
+                                         int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity, float damage)
 {
 	m_textureName = textureName;
 	m_animationKey = animationKey;
@@ -19,17 +23,16 @@ ProjectileComponent::ProjectileComponent(std::string textureName, std::string an
 
 ProjectileComponent::~ProjectileComponent()
 {
-	m_BulletList.clear();
-	delete &m_BulletList;
 }
 
-void ProjectileComponent::FireProjectile()
+void ProjectileComponent::FireProjectile(float x, float y)
 {
-	Bullet* bullet = new Bullet(0,0);
+	Bullet* bullet = new Bullet(x, y);
+	std::list<Bullet*> m_BulletList;
 	bullet->m_damage = m_damage;
 	bullet->m_velocity = m_velocity;
 	bullet->initTexture(m_textureName);
-	bullet->setAnimation(m_animationKey,m_timer,m_startFrameX,m_startFrameY,m_frameX,m_frameY,m_width,m_height);
+	bullet->setAnimation(m_animationKey, m_timer, m_startFrameX, m_startFrameY, m_frameX, m_frameY, m_width, m_height);
 	m_BulletList.push_back(bullet);
 }
 

@@ -45,12 +45,12 @@ void GameState::updateInput(const float& dt)
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_LEFT"))))
 		player->move(-1.f, 0.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_RIGHT"))))
-		player->move( 1.f, 0.f, dt);
+		player->move(1.f, 0.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_UP"))))
 		player->move(0.f, -1.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_DOWN"))))
 		player->move(0.f, 1.f, dt);
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("SHOOT"))))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("SHOOT"))))
 		player->attack();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE"))))
 		endState();
@@ -60,7 +60,6 @@ void GameState::update(const float& dt)
 {
 	update_mouse_position();
 	updateInput(dt);
-	
 	player->update(dt);
 }
 
@@ -69,5 +68,7 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = window;
 	player->render(target);
+	if(bullet)
+		bullet->render(target);
 }
  

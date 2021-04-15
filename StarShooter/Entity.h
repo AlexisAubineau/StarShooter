@@ -1,8 +1,8 @@
  #ifndef ENTITY_H
 #define ENTITY_H
 
-#include "Config.h"
 #include "Component.h"
+#include "Config.h"
 
  class Entity
 {
@@ -25,6 +25,7 @@ public:
 
 	//Functions
 	virtual void setPosition(const float x, const float y);
+	sf::Vector2f getPosition();
 	float Life(float life);
 
 	virtual void update(const float& dt);

@@ -14,16 +14,16 @@ public:
 	
 	MovementComponent* createMovementComponent(const float maxVelocity, const float acceleration, const float deceleration);
 	AnimationComponent* createAnimationComponent(sf::Texture& texture_sheet);
-	ProjectileComponent* createProjectileComponent(std::string textureName, 
-						std::string animationKey,
-						float timer,
-						int startFrameX,
-						int startFrameY,
-						int frameX, 
-						int frameY,
-						int width,
-						int height,
-						float velocity,
-						float damage);
+	ProjectileComponent* createProjectileComponent(std::string textureName,
+		std::string animationKey,
+		float timer,
+		int startFrameX,
+		int startFrameY,
+		int frameX,
+		int frameY,
+		int width,
+		int height,
+		float velocity,
+		float damage);
 };
 #endif // COMPONENT_H

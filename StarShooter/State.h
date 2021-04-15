@@ -15,8 +15,6 @@ private:
 protected:
 	std::stack<State*>* states;
 	sf::RenderWindow* window;
-	std::map<std::string, int>* supportedKeys;
-	std::map<std::string, int> keybinds;
 	bool quit;
 
 	sf::Vector2i mousePosScreen;
@@ -25,6 +23,8 @@ protected:
 	
 	//Ressources
 	std::map<std::string, sf::Texture> textures;
+	std::map<std::string, int>* supportedKeys;
+	std::map<std::string, int> keybinds;
 
 	//Functions
 	virtual void initKeybinds() = 0;

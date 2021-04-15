@@ -3,6 +3,8 @@
 
 #include <fstream>
 
+
+#include "Bullet.h"
 #include "State.h"
 #include "PlayerGUI.h"
 
@@ -12,6 +14,7 @@ class GameState :
 private:
 	//Variables
 	Player* player;
+	Bullet* bullet;
 	PlayerGUI* player_gui;
 
 	//Functions

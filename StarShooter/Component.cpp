@@ -16,16 +16,16 @@ ProjectileComponent* Component::createProjectileComponent(std::string textureNam
 	float timer, int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity,
 	float damage)
 {
-	auto *const projectileComponent = new ProjectileComponent(textureName, 
-						animationKey,
-						timer,
-						startFrameX,
-						startFrameY,
-						frameX, 
-						frameY,
-						width,
-						height,
-						velocity,
-						damage);
+	auto* const projectileComponent = new ProjectileComponent(textureName,
+		animationKey,
+		timer,
+		startFrameX,
+		startFrameY,
+		frameX,
+		frameY,
+		width,
+		height,
+		velocity,
+		damage);
 	return projectileComponent;
 }
