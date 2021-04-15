@@ -11,3 +11,21 @@ AnimationComponent* Component::createAnimationComponent(sf::Texture& texture_she
 	auto *const animationComponent = new AnimationComponent(sprite, texture_sheet);
 	return animationComponent;
 }
+
+ProjectileComponent* Component::createProjectileComponent(std::string textureName, std::string animationKey,
+	float timer, int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity,
+	float damage)
+{
+	auto *const projectileComponent = new ProjectileComponent(textureName, 
+						animationKey,
+						timer,
+						startFrameX,
+						startFrameY,
+						frameX, 
+						frameY,
+						width,
+						height,
+						velocity,
+						damage);
+	return projectileComponent;
+}

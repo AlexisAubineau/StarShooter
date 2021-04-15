@@ -20,6 +20,7 @@ private:
 	//Initializer Components
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
+	ProjectileComponent* projectileComponent;
 
 protected:
 

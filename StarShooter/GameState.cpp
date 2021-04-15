@@ -50,6 +50,8 @@ void GameState::updateInput(const float& dt)
 		player->move(0.f, -1.f, dt);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("MOVE_DOWN"))))
 		player->move(0.f, 1.f, dt);
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("SHOOT"))))
+		player->attack();
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE"))))
 		endState();
 }

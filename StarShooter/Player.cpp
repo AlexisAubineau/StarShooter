@@ -26,6 +26,7 @@ Player::Player(float x, float y)
 
 	movementComponent = component->createMovementComponent(300.f, 15.f, 5.f);
 	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET","SHIP_PROJECTILE",10.f,0,0,4,0,120,90,10.f,10.f);
 
 	std::cout << health << std::endl;
 	
@@ -36,6 +37,7 @@ Player::~Player()
 {
 	delete movementComponent;
 	delete animationComponent;
+	delete projectileComponent;
 }
 
 void Player::move(const float dir_x, const float dir_y, const float& dt)
@@ -47,6 +49,11 @@ void Player::move(const float dir_x, const float dir_y, const float& dt)
 
 void Player::attack()
 {
+	if (projectileComponent)
+	{
+		projectileComponent->FireProjectile();
+	}
+	
 }
 
 // Functions
