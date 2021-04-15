@@ -68,7 +68,6 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = window;
 	player->render(target);
-	if(bullet)
-		bullet->render(target);
+	player->projectileComponent->DrawAll(target);
 }
  

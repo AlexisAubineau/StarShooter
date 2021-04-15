@@ -28,7 +28,7 @@ ProjectileComponent::~ProjectileComponent()
 void ProjectileComponent::FireProjectile(float x, float y)
 {
 	Bullet* bullet = new Bullet(x, y);
-	std::list<Bullet*> m_BulletList;
+	//std::list<Bullet*> m_BulletList;
 	bullet->m_damage = m_damage;
 	bullet->m_velocity = m_velocity;
 	bullet->initTexture(m_textureName);
@@ -38,4 +38,16 @@ void ProjectileComponent::FireProjectile(float x, float y)
 
 void ProjectileComponent::update(const float& dt)
 {
+	for (Bullet* element : m_BulletList)
+	{
+		element->update(dt,m_animationKey);
+	}
+}
+
+void ProjectileComponent::DrawAll(sf::RenderTarget* target)
+{
+	for (Bullet* element : m_BulletList)
+	{
+		element->render(target);
+	}
 }

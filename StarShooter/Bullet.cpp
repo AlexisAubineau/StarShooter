@@ -24,7 +24,7 @@ Bullet::Bullet(float m_posx, float m_posy)
 {
 	setPosition(m_posx, m_posy);
 
-	movementComponent = component->createMovementComponent(m_velocity, 0, 0);
+	movementComponent = component->createMovementComponent(m_velocity, m_velocity*500, -m_velocity*50);
 }
 
 Bullet::~Bullet()
@@ -43,7 +43,13 @@ void Bullet::Movement(const float& dt)
 
 void Bullet::update(const float& dt, std::string m_animationKey)
 {
+	if (movementComponent)
+	{
+		Movement(dt);
 	movementComponent->update(dt);
+	}
+	
+	
 	if (animationComponent)
 	{
 		animationComponent->play(m_animationKey, dt);

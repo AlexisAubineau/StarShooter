@@ -32,7 +32,7 @@ Player::Player(float x, float y)
 	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 
 	// Component Projectile Player 
-	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 10.f, 10.f);
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 100.f, 10.f);
 }
 
 Player::~Player()
@@ -65,6 +65,7 @@ void Player::update(const float& dt)
 {
 	movementComponent->update(dt);
 	animationComponent->play("SHIP_IDLE", dt);
+	projectileComponent->update(dt);
 	Life(health);
 	
 }

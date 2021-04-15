@@ -4,11 +4,18 @@
 #include <list>
 #include <string>
 
+namespace sf {
+	class RenderTarget;
+}
+
+class Bullet;
+
 class ProjectileComponent
 {
 private:
 	std::string m_textureName;
 	std::string m_animationKey;
+	
 	float m_timer;
 	int m_startFrameX;
 	int m_startFrameY;
@@ -20,6 +27,7 @@ private:
 	float m_damage;
 
 public:
+	std::list<Bullet*> m_BulletList;
 	ProjectileComponent(std::string textureName,
 		std::string animationKey,
 		float timer,
@@ -35,6 +43,7 @@ public:
 
 	void FireProjectile(float x, float y);
 	void update(const float& dt);
+	void DrawAll(sf::RenderTarget* target);
 };
 
 
