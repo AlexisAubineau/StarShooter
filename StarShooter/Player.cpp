@@ -25,7 +25,7 @@ Player::Player(float x, float y)
 	setPosition(x, y);
 
 	// Movement Component Player
-	movementComponent = component->createMovementComponent(300.f, 15.f, 5.f);
+	movementComponent = component->createMovementComponent(800.f, 15.f, 15.f);
 
 	// Animation Player
 	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
