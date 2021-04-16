@@ -2,6 +2,7 @@
 #define COMPONENT_H
 
 #include "AnimationComponent.h"
+#include "InputComponent.h"
 #include "MovementComponent.h"
 #include "ProjectileComponent.h"
 
@@ -26,5 +27,6 @@ public:
 		float velocity,
 		float damage,
 		float delay);
+	InputComponent* createInputComponent();
 };
 #endif // COMPONENT_H

@@ -30,3 +30,9 @@ ProjectileComponent* Component::createProjectileComponent(std::string textureNam
 		delay);
 	return projectileComponent;
 }
+
+InputComponent* Component::createInputComponent()
+{
+	auto* const inputComponent = new InputComponent();
+	return inputComponent;
+}

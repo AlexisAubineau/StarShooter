@@ -25,12 +25,15 @@ protected:
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
 	ProjectileComponent* projectileComponent;
+	InputComponent* inputComponent;
 
 public:
 	Player(float x, float y);
 	virtual ~Player();
 
 	float health = 150.f;
+	std::map<std::string, int> keybinds;
+	std::map<std::string, int>* supportedKeys;
 	
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);

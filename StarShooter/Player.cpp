@@ -16,6 +16,8 @@ void Player::initComponents()
 
 	// Component Projectile Player 
 	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
+
+	inputComponent = component->createInputComponent();
 }
 
 void Player::initTexture()
@@ -40,6 +42,7 @@ Player::~Player()
 	delete movementComponent;
 	delete animationComponent;
 	delete projectileComponent;
+	delete inputComponent;
 }
 
 void Player::move(const float dir_x, const float dir_y, const float& dt)
@@ -65,6 +68,7 @@ void Player::update(const float& dt)
 	movementComponent->update(dt);
 	animationComponent->play("SHIP_IDLE", dt);
 	projectileComponent->update(dt);
+	inputComponent->updateInput(dt, this, keybinds, supportedKeys);
 	Life(health);
 	
 }
