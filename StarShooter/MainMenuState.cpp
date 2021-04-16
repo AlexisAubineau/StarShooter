@@ -104,6 +104,11 @@ void MainMenuState::updateButtons()
 		states->push(new GameState(window, supportedKeys, states));
 	}
 
+	if (buttons["SETTINGS"]->isPressed())
+	{
+		states->push(new SettingsState(window, supportedKeys, states));
+	}
+
 	//Quit the game 
 	if (buttons["EXIT_STATE"]->isPressed()) {
 		endState();

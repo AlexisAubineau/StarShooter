@@ -5,6 +5,7 @@
 #include <fstream>
 
 #include "GameState.h"
+#include "SettingsState.h"
 #include "State.h"
 #include "Button.h"
 
