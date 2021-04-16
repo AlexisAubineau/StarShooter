@@ -24,6 +24,7 @@ public:
 		int width,
 		int height,
 		float velocity,
-		float damage);
+		float damage,
+		float delay);
 };
 #endif // COMPONENT_H

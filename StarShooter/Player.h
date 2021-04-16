@@ -11,6 +11,7 @@ class Player :
 private:
 	//Variables
 	float health = 100.f;
+	float shoot_delay = .5f;
 
 	//Initializer functions
 	void initVariables();
@@ -21,7 +22,6 @@ protected:
 	//Initializer Components
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
-	
 
 public:
 	Player(float x, float y);

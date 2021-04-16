@@ -7,7 +7,15 @@ void Player::initVariables()
 
 void Player::initComponents()
 {
-	
+	// Movement Component Player
+	movementComponent = component->createMovementComponent(800.f, 15.f, 15.f);
+
+	// Animation Player
+	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
+	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
+
+	// Component Projectile Player 
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
 }
 
 void Player::initTexture()
@@ -22,17 +30,8 @@ Player::Player(float x, float y)
 {
 	initVariables();
 	initTexture();
+	initComponents();
 	setPosition(x, y);
-
-	// Movement Component Player
-	movementComponent = component->createMovementComponent(800.f, 15.f, 15.f);
-
-	// Animation Player
-	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
-	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
-
-	// Component Projectile Player 
-	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 100.f, 10.f);
 }
 
 Player::~Player()
@@ -54,7 +53,6 @@ void Player::attack()
 	if (projectileComponent)
 	{
 		projectileComponent->FireProjectile(getPosition().x, getPosition().y);
-		std::cout << "Hey je tire fdp !" << std::endl;
 	}
 	
 }
@@ -73,4 +71,3 @@ void Player::update(const float& dt)
 void Player::updateInput(const float& dt)
 {
 }
- 

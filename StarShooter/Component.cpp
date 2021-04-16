@@ -14,7 +14,7 @@ AnimationComponent* Component::createAnimationComponent(sf::Texture& texture_she
 
 ProjectileComponent* Component::createProjectileComponent(std::string textureName, std::string animationKey,
 	float timer, int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity,
-	float damage)
+	float damage, float delay)
 {
 	auto* const projectileComponent = new ProjectileComponent(textureName,
 		animationKey,
@@ -26,6 +26,7 @@ ProjectileComponent* Component::createProjectileComponent(std::string textureNam
 		width,
 		height,
 		velocity,
-		damage);
+		damage,
+		delay);
 	return projectileComponent;
 }

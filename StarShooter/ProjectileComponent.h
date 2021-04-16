@@ -3,6 +3,9 @@
 
 #include <list>
 #include <string>
+#include <iostream>
+#include <SFML/System/Clock.hpp>
+#include <SFML/System/Time.hpp>
 
 namespace sf {
 	class RenderTarget;
@@ -15,6 +18,8 @@ class ProjectileComponent
 private:
 	std::string m_textureName;
 	std::string m_animationKey;
+	sf::Clock clock;
+
 	
 	float m_timer;
 	int m_startFrameX;
@@ -25,6 +30,8 @@ private:
 	int m_height;
 	float m_velocity;
 	float m_damage;
+	float m_delay;
+	float m_time_interval;
 
 public:
 	std::list<Bullet*> m_BulletList;
@@ -38,12 +45,13 @@ public:
 		int width,
 		int height,
 		float velocity,
-		float damage);
+		float damage,
+		float delay);
 	virtual ~ProjectileComponent();
 
 	void FireProjectile(float x, float y);
 	void update(const float& dt);
-	void DrawAll(sf::RenderTarget* target);
+	void render(sf::RenderTarget* target);
 };
 
 

@@ -24,7 +24,7 @@ Bullet::Bullet(float m_posx, float m_posy)
 {
 	setPosition(m_posx, m_posy);
 
-	movementComponent = component->createMovementComponent(m_velocity, m_velocity*500, -m_velocity*50);
+	movementComponent = component->createMovementComponent(m_velocity, m_velocity*100, -m_velocity*10);
 }
 
 Bullet::~Bullet()

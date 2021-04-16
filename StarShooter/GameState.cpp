@@ -16,13 +16,16 @@ void GameState::initKeybinds()
 	ifs.close();
 }
 
-void GameState::initTextures()
-{
-}
+void GameState::initTextures(){}
 
 void GameState::initPlayers()
 {
 	player = new Player(0, 0);
+}
+
+void GameState::initGUI()
+{
+	player_gui = new PlayerGUI(player);
 }
 
 //Constructors / Destructors
@@ -32,6 +35,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	initKeybinds();
 	initTextures();
 	initPlayers();
+	initGUI();
 }
 
 GameState::~GameState()
@@ -68,6 +72,7 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = window;
 	player->render(target);
-	player->projectileComponent->DrawAll(target);
+	player->projectileComponent->render(target);
+	player_gui->render(target);
 }
  

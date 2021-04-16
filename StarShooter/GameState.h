@@ -4,8 +4,8 @@
 #include <fstream>
 
 
-#include "Bullet.h"
 #include "State.h"
+#include "Player.h"
 #include "PlayerGUI.h"
 
 class GameState :
@@ -21,6 +21,7 @@ private:
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
+	void initGUI();
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);

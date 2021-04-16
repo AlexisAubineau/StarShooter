@@ -16,9 +16,9 @@ void PlayerGUI::initHPBar()
 	hpBarInner.setPosition(hpBarBack.getPosition());
 }
 
-PlayerGUI::PlayerGUI(Player* player)
+PlayerGUI::PlayerGUI(Player* m_player)
 {
-	this->player = player;
+	player = m_player;
 
 	initFont();
 	initHPBar();
@@ -39,13 +39,13 @@ void PlayerGUI::update(const float& dt)
 	
 }
 
-void PlayerGUI::renderHPBar(sf::RenderTarget& target)
+void PlayerGUI::renderHPBar(sf::RenderTarget* target)
 {
-	target.draw(hpBarBack);
-	target.draw(hpBarInner);
+	target->draw(hpBarBack);
+	target->draw(hpBarInner);
 }
 
-void PlayerGUI::render(sf::RenderTarget& target)
+void PlayerGUI::render(sf::RenderTarget* target)
 {
 	renderHPBar(target);
 }
