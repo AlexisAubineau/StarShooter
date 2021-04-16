@@ -47,23 +47,23 @@ void MainMenuState::initKeybinds()
 void MainMenuState::initButtons()
 {
 	buttons["GAME_STATE"] = new Button(
-		300.f, 480.f, 250.f, 50.f,
+		100, 480.f, 250.f, 50.f,
 		&font, "Play", 50,
-		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	buttons["SETTINGS"] = new Button(
-		300, 580, 250, 50,
+		100, 580, 250, 50,
 		&font, "Settings", 50,
-		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	buttons["EXIT_STATE"] = new Button(
-		300, 880, 250, 50,
+		100, 880, 250, 50,
 		&font, "Quit", 50,
-		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 }
