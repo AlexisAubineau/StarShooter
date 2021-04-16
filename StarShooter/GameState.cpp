@@ -20,7 +20,7 @@ void GameState::initTextures(){}
 
 void GameState::initPlayers()
 {
-	player = new Player(0, 0);
+	player = new Player(0, 540);
 }
 
 void GameState::initGUI()

@@ -48,21 +48,14 @@ void MainMenuState::initButtons()
 {
 	buttons["GAME_STATE"] = new Button(
 		300.f, 480.f, 250.f, 50.f,
-		&font, "New Game", 50,
+		&font, "Play", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
-	buttons["STTINGS"] = new Button(
+	buttons["SETTINGS"] = new Button(
 		300, 580, 250, 50,
 		&font, "Settings", 50,
-		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
-		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
-	);
-
-	buttons["EDITOR_STATE"] = new Button(
-		300, 680, 250, 50,
-		&font, "Editor", 50,
 		sf::Color(70, 70, 70, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
