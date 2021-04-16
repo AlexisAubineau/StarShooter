@@ -4,12 +4,9 @@
 #include <list>
 #include <string>
 #include <iostream>
+#include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/System/Time.hpp>
-
-namespace sf {
-	class RenderTarget;
-}
 
 class Bullet;
 

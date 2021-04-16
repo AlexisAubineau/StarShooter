@@ -1,7 +1,14 @@
 #ifndef PLAYERGUI_H
 #define PLAYERGUI_H
 
-#include "Player.h"
+#include <SFML/Graphics/Font.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
+
+
+#include "Config.h"
+
+
+class Player;
 
 class PlayerGUI
 {

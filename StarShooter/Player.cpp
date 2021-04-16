@@ -32,6 +32,7 @@ Player::Player(float x, float y)
 	initTexture();
 	initComponents();
 	setPosition(x, y);
+	player_gui = new PlayerGUI(this);
 }
 
 Player::~Player()
@@ -68,6 +69,9 @@ void Player::update(const float& dt)
 	
 }
 
-void Player::updateInput(const float& dt)
+void Player::render(sf::RenderTarget* target)
 {
+	target->draw(component->sprite);
+	projectileComponent->render(target);
+	player_gui->render(target);
 }

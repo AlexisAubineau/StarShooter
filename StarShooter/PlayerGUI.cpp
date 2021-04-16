@@ -1,5 +1,7 @@
 #include "PlayerGUI.h"
 
+#include "Player.h"
+
 void PlayerGUI::initFont()
 {
 	font.loadFromFile(config->fontPath);
