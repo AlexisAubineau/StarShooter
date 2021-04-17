@@ -27,6 +27,7 @@ public:
 	virtual void setPosition(const float x, const float y);
 	sf::Vector2f getPosition();
 	float Life(float life);
+	float maxLife(float maxLife);
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);

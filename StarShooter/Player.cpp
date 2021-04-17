@@ -34,7 +34,11 @@ Player::Player(float x, float y)
 	initTexture();
 	initComponents();
 	setPosition(x, y);
+	
 	player_gui = new PlayerGUI(this);
+	
+	maxLife(max_life);
+	Life(current_life);
 }
 
 Player::~Player()
@@ -43,6 +47,7 @@ Player::~Player()
 	delete animationComponent;
 	delete projectileComponent;
 	delete inputComponent;
+	delete player_gui;
 }
 
 void Player::move(const float dir_x, const float dir_y, const float& dt)
@@ -68,9 +73,9 @@ void Player::update(const float& dt)
 	movementComponent->update(dt);
 	animationComponent->play("SHIP_IDLE", dt);
 	projectileComponent->update(dt);
+	player_gui->update(dt);
 	inputComponent->updateInput(dt, this, keybinds, supportedKeys);
-	Life(health);
-	
+	current_life = current_life - 1;
 }
 
 void Player::render(sf::RenderTarget* target)

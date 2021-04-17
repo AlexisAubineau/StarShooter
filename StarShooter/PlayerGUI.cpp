@@ -1,5 +1,4 @@
 #include "PlayerGUI.h"
-
 #include "Player.h"
 
 void PlayerGUI::initFont()
@@ -9,13 +8,13 @@ void PlayerGUI::initFont()
 
 void PlayerGUI::initHPBar()
 {
-	hpBarBack.setSize(sf::Vector2f(205.f, 25.f));
+	hpBarBack.setSize(sf::Vector2f(width_back, height_back));
 	hpBarBack.setFillColor(sf::Color(50, 50, 50, 200));
-	hpBarBack.setPosition(20.f, 20.f);
+	hpBarBack.setPosition(x_back, y_back);
 	
-	hpBarInner.setSize(sf::Vector2f(player->health, 20.f));
+	hpBarInner.setSize(sf::Vector2f(width_inner, height_inner));
 	hpBarInner.setFillColor(sf::Color(20, 250, 20, 200));
-	hpBarInner.setPosition(hpBarBack.getPosition().x + 2.5f, hpBarBack.getPosition().y + 1.5f);
+	hpBarInner.setPosition(x_inner, y_inner);
 }
 
 PlayerGUI::PlayerGUI(Player* m_player)
@@ -33,11 +32,17 @@ PlayerGUI::~PlayerGUI()
 // Functions
 void PlayerGUI::updateHpBar()
 {
-	
+	float percent = player->current_life / player->max_life;
+
+	if (hpBarInner.getSize().x > hpBarMinWidth)
+	{
+		hpBarInner.setSize(sf::Vector2f(static_cast<float>(std::floor(hpBarMaxWidth * percent)), hpBarInner.getSize().y));
+	}
 }
 
 void PlayerGUI::update(const float& dt)
 {
+	updateHpBar();
 }
 
 void PlayerGUI::renderHPBar(sf::RenderTarget* target)

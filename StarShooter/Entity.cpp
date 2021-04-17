@@ -33,6 +33,11 @@ float Entity::Life(float life)
 	return life;
 }
 
+float Entity::maxLife(float maxLife)
+{
+	return maxLife;
+}
+
 void Entity::update(const float& dt)
 {
 }

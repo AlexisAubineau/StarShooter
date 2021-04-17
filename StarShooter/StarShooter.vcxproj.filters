@@ -81,6 +81,9 @@
     <ClCompile Include="InputComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>Ressources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -133,6 +136,9 @@
     </ClInclude>
     <ClInclude Include="InputComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Ressources</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
