@@ -12,9 +12,9 @@ void Bullet::setAnimation(std::string m_animationKey, float m_timer, int m_start
 	animationComponent->addAnimation(m_animationKey, m_timer, m_startFrameX, m_startFrameY, m_frameX, m_frameY, m_width, m_height);
 }
 
-void Bullet::initTexture(std::string m_textureName)
+void Bullet::initTexture(std::string m_textureName, std::string m_pathname)
 {
-	if (!component->textures[m_textureName].loadFromFile(config->ProjectilePath)) {
+	if (!component->textures[m_textureName].loadFromFile(m_pathname)) {
 		std::cout << "ERROR::GAME_STATE::COULD_NOT_LOAD_PROJECTILE_TEXTURE" << std::endl;
 	}
 	animationComponent = component->createAnimationComponent(component->textures[m_textureName]);

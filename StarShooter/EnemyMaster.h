@@ -1,34 +1,37 @@
-#ifndef BULLET_H
-#define BULLET_H
+#ifndef ENEMYMASTER_H
+#define ENEMYMASTER_H
 #include "Entity.h"
 
-class Bullet :
+class EnemyMaster :
 	public Entity
 {
 private:
-	//initializers
-	void initComponents();
 
+	
 protected:
-	//Components
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
-
+	ProjectileComponent* projectileComponent;
 public:
-
-	Bullet(float m_posx, float m_posy);
-	virtual ~Bullet();
-
+	EnemyMaster(float m_posx, float m_posy);
+	virtual ~EnemyMaster();
+	
 	//Variables
-	float m_velocity = 100.f;
+	float m_shoot_delay = .5f;
+	float m_life = 5.f;
 	float m_damage = 1.0f;
+	float m_velocity = 100.f;
+	float m_accel = 5.f;
 
+	//functions
+	void move(const float& dt);
+	void attack();
 
-	//Functions
-	virtual void Movement(const float& dt);
 	virtual void update(const float& dt, std::string m_animationKey);
 	virtual void render(sf::RenderTarget* target);
-
+	
+	//Initalizers
+	void initComponents();
 	void initTexture(std::string m_textureName, std::string m_pathname);
 	void setAnimation(std::string m_animationKey,
 		float m_timer,
@@ -38,7 +41,6 @@ public:
 		int m_frameY,
 		int m_width,
 		int m_height);
-
 };
-#endif
 
+#endif

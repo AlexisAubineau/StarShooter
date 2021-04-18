@@ -16,6 +16,8 @@ public:
 	// Sprites
 	const std::string playerIdlePath = "Resources/Images/Sprites/Player/SHIP_IDLE_SHEET.png";
 	const std::string ProjectilePath = "Resources/Images/Sprites/Player/SHIP_PROJECTILE_SHEET.png";
+	const std::string EnemyType1Sprite = "Resources/Images/Sprites/Enemies/ENEMY_TYPE1.png";
+	const std::string EnemyType1Projectile = "Resources/Images/Sprites/Enemies/ENEMY_PROJECTILE";
 
 	// Background
 	const sf::String backgroundPath = "Resources/Images/Backgrounds/bg1.png";

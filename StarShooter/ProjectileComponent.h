@@ -15,6 +15,7 @@ class ProjectileComponent
 private:
 	std::string m_textureName;
 	std::string m_animationKey;
+	std::string m_texturePathName;
 	sf::Clock clock;
 
 	
@@ -34,6 +35,7 @@ public:
 	std::list<Bullet*> m_BulletList;
 	ProjectileComponent(std::string textureName,
 		std::string animationKey,
+		std::string texturePathName,
 		float timer,
 		int startFrameX,
 		int startFrameY,
@@ -48,6 +50,7 @@ public:
 
 	void FireProjectile(float x, float y);
 	void update(const float& dt);
+	void setProjectileTexture(std::string texturename, std::string texturePathName);
 	void render(sf::RenderTarget* target);
 };
 

@@ -15,7 +15,7 @@ void Player::initComponents()
 	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 
 	// Component Projectile Player 
-	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", config->ProjectilePath, 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
 
 	inputComponent = component->createInputComponent();
 }
