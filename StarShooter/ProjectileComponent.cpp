@@ -1,11 +1,12 @@
 #include "ProjectileComponent.h"
 #include "Bullet.h"
 
-ProjectileComponent::ProjectileComponent(std::string textureName, std::string animationKey, float timer,
+ProjectileComponent::ProjectileComponent(std::string textureName, std::string animationKey, std::string texturePathName,float timer,
                                          int startFrameX, int startFrameY, int frameX, int frameY, int width, int height, float velocity, float damage, float delay)
 {
 	m_textureName = textureName;
 	m_animationKey = animationKey;
+	m_texturePathName = texturePathName;
 	m_timer = timer;
 	m_startFrameX = startFrameX;
 	m_startFrameY = startFrameY;
@@ -29,7 +30,7 @@ void ProjectileComponent::FireProjectile(float x, float y)
 		Bullet* bullet = new Bullet(x, y);
 		bullet->m_damage = m_damage;
 		bullet->m_velocity = m_velocity;
-		bullet->initTexture(m_textureName);
+		bullet->initTexture(m_textureName,m_texturePathName);
 		bullet->setAnimation(m_animationKey, m_timer, m_startFrameX, m_startFrameY, m_frameX, m_frameY, m_width, m_height);
 		m_BulletList.push_back(bullet);
 		clock.restart();
@@ -43,6 +44,17 @@ void ProjectileComponent::update(const float& dt)
 	for (Bullet* element : m_BulletList)
 	{
 		element->update(dt,m_animationKey);
+	}
+}
+
+void ProjectileComponent::setProjectileTexture(std::string texturename, std::string texturePathName)
+{
+	m_textureName = texturename;
+	m_texturePathName = texturePathName;
+	
+	for (Bullet* element : m_BulletList)
+	{
+		element->initTexture(m_textureName,m_texturePathName);
 	}
 }
 

@@ -17,6 +17,7 @@ public:
 	AnimationComponent* createAnimationComponent(sf::Texture& texture_sheet);
 	ProjectileComponent* createProjectileComponent(std::string textureName,
 		std::string animationKey,
+		std::string texturePathName,
 		float timer,
 		int startFrameX,
 		int startFrameY,
