@@ -1,7 +1,9 @@
 #include "MovementComponent.h"
 
+#include <iostream>
+
 MovementComponent::MovementComponent(sf::Sprite& sprite, 
-	float maxVelocity, float acceleration, float deceleration)
+                                     float maxVelocity, float acceleration, float deceleration)
 	: sprite(sprite),
 	maxVelocity(maxVelocity), acceleration(acceleration), deceleration(deceleration)
 {
@@ -86,5 +88,47 @@ void MovementComponent::update(const float& dt)
 	
 	//Final move
 	sprite.move(velocity * dt); //Uses velocity
+}
+
+void MovementComponent::checkLocationAllowed(sf::RenderWindow* m_window, sf::Sprite m_sprite)
+{
+	auto sprite_location = m_sprite.getPosition();
+
+	float sprite_location_x = sprite_location.x;
+	float sprite_location_y = sprite_location.y;
+
+	if (sprite_location_x < 0 && m_dir_x < 0)
+	{
+		velocity = sf::Vector2f(0, 0);
+		m_dir_x = 0;
+		m_dir_y = 0;
+		locationAllowed = false;
+	}
+	if (sprite_location_y < 0 && m_dir_y < 0)
+	{
+		velocity = sf::Vector2f(0, 0);
+		m_dir_x = 0;
+		m_dir_y = 0;
+		locationAllowed = false;
+	}
+	if (sprite_location_x + m_sprite.getLocalBounds().width > m_window->getSize().x && m_dir_x > 0)
+	{
+		velocity = sf::Vector2f(0, 0);
+		m_dir_x = 0;
+		m_dir_y = 0;
+		locationAllowed = false;
+	}
+	if (sprite_location_y + m_sprite.getLocalBounds().height > m_window->getSize().y && m_dir_y > 0)
+	{
+		velocity = sf::Vector2f(0, 0);
+		m_dir_x = 0;
+		m_dir_y = 0;
+		locationAllowed = false;
+	}
+	else
+	{
+		std::cout << "m_dir_x : " << m_dir_x << ", m_dir_y : " << m_dir_y << std::endl;
+		locationAllowed = true;
+	}
 }
  

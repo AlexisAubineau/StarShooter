@@ -32,19 +32,19 @@ public:
 	Player(float x, float y);
 	virtual ~Player();
 
+	//Variables
 	float max_life = 200.f;
 	float current_life = 150.f;
+	
 	std::map<std::string, int> keybinds;
 	std::map<std::string, int>* supportedKeys;
 	sf::RenderWindow* window;
-	bool locationAllowed;
 	
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);
 	void attack();
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);
-	void checkLocationAllowed();
 };
 
 #endif

@@ -2,10 +2,11 @@
 #define GAMESTATE_H
 
 #include <fstream>
-
-
-#include "State.h"
+#include "Bullet.h"
 #include "Player.h"
+#include "State.h"
+
+class Entity;
 
 class GameState :
 	public State

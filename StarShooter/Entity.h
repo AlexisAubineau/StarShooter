@@ -16,6 +16,7 @@ public:
 	virtual ~Entity();
 
 	//Variables
+	sf::RenderWindow* window;
  	
 	Config* config = new Config;
 
