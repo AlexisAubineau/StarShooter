@@ -11,6 +11,6 @@ public:
 	~InputComponent() = default;
 
 	//Functions
-	void updateInput(const float& dt, Player* player, std::map<std::string, int> keybinds, std::map<std::string, int>* supportedKeys);
+	void updateInput(const float& dt, Player* player, std::map<std::string, int> keybinds, std::map<std::string, int>* supportedKeys, bool locationAllowed);
 };
 

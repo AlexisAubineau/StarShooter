@@ -12,11 +12,15 @@ private:
 	float acceleration;
 	float deceleration;
 
-	sf::Vector2f velocity;
-
 	//Initializer functions
 
 public:
+
+	//Variables
+	float m_dir_x = 0.f;
+	float m_dir_y = 0.f;
+	sf::Vector2f velocity;
+	
 	MovementComponent(sf::Sprite& sprite, float maxVelocity, float acceleration, float deceleration);
 	virtual ~MovementComponent();
 

@@ -74,8 +74,8 @@ void Player::update(const float& dt)
 	animationComponent->play("SHIP_IDLE", dt);
 	projectileComponent->update(dt);
 	player_gui->update(dt);
-	inputComponent->updateInput(dt, this, keybinds, supportedKeys);
-	current_life = current_life - 1;
+	inputComponent->updateInput(dt, this, keybinds, supportedKeys, locationAllowed);
+	checkLocationAllowed();
 }
 
 void Player::render(sf::RenderTarget* target)
@@ -83,4 +83,39 @@ void Player::render(sf::RenderTarget* target)
 	target->draw(component->sprite);
 	projectileComponent->render(target);
 	player_gui->render(target);
+}
+
+void Player::checkLocationAllowed()
+{
+	player_location = component->sprite.getPosition();
+
+	float x = player_location.x;
+	float y = player_location.y;
+
+	if (movementComponent->m_dir_x > 0 || movementComponent->m_dir_y > 0)
+	{
+		if (x + movementComponent->m_dir_x + 100 >= window->getSize().x || y + movementComponent->m_dir_y + 55 >= window->getSize().y)
+		{
+			std::cout << "false" << std::endl;
+			locationAllowed = false;
+			movementComponent->velocity = sf::Vector2f(0, 0);
+			movementComponent->m_dir_x = 0;
+			movementComponent->m_dir_y = 0;
+		}
+	}
+	if (movementComponent->m_dir_x < 0 || movementComponent->m_dir_y < 0)
+	{
+		if (x - movementComponent->m_dir_x - 25 < 0 || y - movementComponent->m_dir_y - 20 < 0)
+		{
+			std::cout << movementComponent->m_dir_x << std::endl;;
+			locationAllowed = false;
+			movementComponent->velocity = sf::Vector2f(0, 0);
+			movementComponent->m_dir_x = 0;
+			movementComponent->m_dir_y = 0;
+		}
+	}
+	else
+	{
+		locationAllowed = true;
+	}
 }

@@ -20,7 +20,7 @@ void GameState::initTextures(){}
 
 void GameState::initPlayers()
 {
-	player = new Player(0, 540);
+	player = new Player(20, 540);
 }
 
 //Constructors / Destructors
@@ -41,6 +41,7 @@ void GameState::updateInput(const float& dt)
 {
 	player->supportedKeys = supportedKeys;
 	player->keybinds = keybinds;
+	player->window = window;
 	
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE"))))
 		endState();
@@ -59,4 +60,3 @@ void GameState::render(sf::RenderTarget* target)
 		target = window;
 	player->render(target);
 }
- 

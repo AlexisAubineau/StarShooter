@@ -14,6 +14,7 @@ private:
 	float shoot_delay = .5f;
 	
 	PlayerGUI* player_gui;
+	sf::Vector2f player_location;
 
 	//Initializer functions
 	void initVariables();
@@ -35,12 +36,15 @@ public:
 	float current_life = 150.f;
 	std::map<std::string, int> keybinds;
 	std::map<std::string, int>* supportedKeys;
+	sf::RenderWindow* window;
+	bool locationAllowed;
 	
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);
 	void attack();
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget* target);
+	void checkLocationAllowed();
 };
 
 #endif

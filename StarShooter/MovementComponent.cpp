@@ -26,6 +26,9 @@ void MovementComponent::move(const float dir_x, const float dir_y, const float& 
 
 	velocity.x += acceleration * dir_x;
 	velocity.y += acceleration * dir_y;
+
+	m_dir_x = dir_x;
+	m_dir_y = dir_y;
 }
 
 
