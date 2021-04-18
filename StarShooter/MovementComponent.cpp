@@ -127,7 +127,6 @@ void MovementComponent::checkLocationAllowed(sf::RenderWindow* m_window, sf::Spr
 	}
 	else
 	{
-		std::cout << "m_dir_x : " << m_dir_x << ", m_dir_y : " << m_dir_y << std::endl;
 		locationAllowed = true;
 	}
 }
