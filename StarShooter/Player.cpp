@@ -75,7 +75,7 @@ void Player::update(const float& dt)
 	
 	animationComponent->play("SHIP_IDLE", dt);
 	
-	projectileComponent->update(dt);
+	projectileComponent->update(dt, window);
 	
 	player_gui->update(dt);
 	

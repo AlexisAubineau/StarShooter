@@ -47,7 +47,7 @@ void EnemyMaster::update(const float& dt, std::string m_animationKey)
 	movementComponent->update(dt);
 	move(dt);
 	animationComponent->play(m_animationKey, dt);
-	projectileComponent->update(dt);
+	projectileComponent->update(dt, window);
 }
 
 void EnemyMaster::render(sf::RenderTarget* target)

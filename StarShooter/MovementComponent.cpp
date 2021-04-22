@@ -97,28 +97,29 @@ void MovementComponent::checkLocationAllowed(sf::RenderWindow* m_window, sf::Spr
 	float sprite_location_x = sprite_location.x;
 	float sprite_location_y = sprite_location.y;
 
-	if (sprite_location_x < 0 && m_dir_x < 0)
+
+	if (sprite_location_y < 0 && m_dir_y < 0) // North
 	{
 		velocity = sf::Vector2f(0, 0);
 		m_dir_x = 0;
 		m_dir_y = 0;
 		locationAllowed = false;
 	}
-	if (sprite_location_y < 0 && m_dir_y < 0)
+	else if (sprite_location_x < 0 && m_dir_x < 0) // West
 	{
 		velocity = sf::Vector2f(0, 0);
 		m_dir_x = 0;
 		m_dir_y = 0;
 		locationAllowed = false;
 	}
-	if (sprite_location_x + m_sprite.getLocalBounds().width > m_window->getSize().x && m_dir_x > 0)
+	else if (sprite_location_y + m_sprite.getLocalBounds().height > m_window->getSize().y && m_dir_y > 0) // South
 	{
 		velocity = sf::Vector2f(0, 0);
 		m_dir_x = 0;
 		m_dir_y = 0;
 		locationAllowed = false;
 	}
-	if (sprite_location_y + m_sprite.getLocalBounds().height > m_window->getSize().y && m_dir_y > 0)
+	else if (sprite_location_x + m_sprite.getLocalBounds().width > m_window->getSize().x && m_dir_x > 0) // East
 	{
 		velocity = sf::Vector2f(0, 0);
 		m_dir_x = 0;
@@ -129,5 +130,6 @@ void MovementComponent::checkLocationAllowed(sf::RenderWindow* m_window, sf::Spr
 	{
 		locationAllowed = true;
 	}
+	//std::cout << "m_dir_x: " << m_dir_x << ", m_dir_y: " << m_dir_y << std::endl;
 }
  

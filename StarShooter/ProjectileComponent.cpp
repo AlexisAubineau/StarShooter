@@ -37,13 +37,26 @@ void ProjectileComponent::FireProjectile(float x, float y)
 	}
 }
 
-void ProjectileComponent::update(const float& dt)
+void ProjectileComponent::update(const float& dt, sf::RenderWindow* window)
 {
 	m_time_interval = clock.getElapsedTime().asSeconds();
-	
-	for (Bullet* element : m_BulletList)
+	if (!m_BulletList.empty())
 	{
-		element->update(dt,m_animationKey);
+		auto it = m_BulletList.begin();
+		while (it != m_BulletList.end())
+		{
+			if (*it != nullptr)
+				(*it)->update(dt, m_animationKey);
+			
+			checkLocationAllowed(window, it);
+			
+			if (out_of_bounds == true)
+			{
+				it = m_BulletList.erase(it);
+				continue;
+			}
+			++it;
+		}
 	}
 }
 
@@ -64,4 +77,22 @@ void ProjectileComponent::render(sf::RenderTarget* target)
 	{
 		element->render(target);
 	}
+}
+
+bool ProjectileComponent::checkLocationAllowed(sf::RenderWindow* m_window, std::list<Bullet*>::iterator it)
+{
+	auto bullet_location = (*it)->getPosition();
+
+	float bullet_location_x = bullet_location.x;
+	float bullet_location_y = bullet_location.y;
+
+	if (bullet_location_x < 0)
+		return out_of_bounds = true;
+	if (bullet_location_y < 0)
+		return out_of_bounds = true;
+	if (bullet_location_x > 500.f)
+		return out_of_bounds = true;
+	if (bullet_location_y > m_window->getSize().y)
+		return out_of_bounds = true;
+	return out_of_bounds = false;
 }
