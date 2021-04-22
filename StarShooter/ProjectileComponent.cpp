@@ -90,7 +90,7 @@ bool ProjectileComponent::checkLocationAllowed(sf::RenderWindow* m_window, std::
 		return out_of_bounds = true;
 	if (bullet_location_y < 0)
 		return out_of_bounds = true;
-	if (bullet_location_x > 500.f)
+	if (bullet_location_x > m_window->getSize().x)
 		return out_of_bounds = true;
 	if (bullet_location_y > m_window->getSize().y)
 		return out_of_bounds = true;
