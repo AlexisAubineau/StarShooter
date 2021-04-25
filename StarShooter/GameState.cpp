@@ -48,6 +48,19 @@ void GameState::initEnemies(sf::RenderWindow* m_window)
 	EnemyType1Spawner->spawnEnemy(980,610);*/
 }
 
+void GameState::initFonts()
+{
+	if (!font.loadFromFile(config->fontPath)) {
+		std::cout << "ERROR::MAINMENUSTATE COULD'NT LOAD FONT" << std::endl;
+	}
+}
+
+void GameState::initPauseMenu()
+{
+	pause_menu = new PauseMenu(*window, font);
+	pause_menu->addButton("EXIT_STATE", 800.f, "QUIT");
+}
+
 //Constructors / Destructors
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)
@@ -56,30 +69,52 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	initTextures();
 	initPlayers();
 	initEnemies(window);
+	initFonts();
+	initPauseMenu();
 }
 
 GameState::~GameState()
 {
 	delete player;
 	delete EnemyType1Spawner;
+	delete pause_menu;
 }
 
 void GameState::updateInput(const float& dt)
 {
-	player->supportedKeys = supportedKeys;
-	player->keybinds = keybinds;
-	player->window = window;
-	
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE"))))
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key(keybinds.at("CLOSE"))) && getKeytime())
+		if (!paused)
+			pauseState();
+		else
+			resumeState();
+}
+
+void GameState::updatePauseMenuButtons()
+{
+	if (pause_menu->isButtonPressed("EXIT_STATE"))
 		endState();
 }
 
 void GameState::update(const float& dt)
 {
 	update_mouse_position();
+	update_keytime(dt);
 	updateInput(dt);
-	player->update(dt);
-	EnemyType1Spawner->update(dt);
+
+	player->supportedKeys = supportedKeys;
+	player->keybinds = keybinds;
+	player->window = window;
+	
+	if (!paused) // Resume update
+	{	
+		player->update(dt);
+		EnemyType1Spawner->update(dt);
+	}
+	else // Pause update
+	{
+		pause_menu->update(mousePosView);
+		updatePauseMenuButtons();
+	}
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -88,4 +123,9 @@ void GameState::render(sf::RenderTarget* target)
 		target = window;
 	player->render(target);
 	EnemyType1Spawner->render(target);
+
+	if (paused) // Pause menu render
+	{
+		pause_menu->render(*target);
+	}
 }

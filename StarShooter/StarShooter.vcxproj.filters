@@ -28,6 +28,9 @@
     <Filter Include="Systems">
       <UniqueIdentifier>{ee99e96e-4714-4682-b578-b69effe665d8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{36cacd06-ee7e-470a-8873-6db34356613b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,9 +48,6 @@
     <ClCompile Include="MainMenuState.cpp">
       <Filter>States</Filter>
     </ClCompile>
-    <ClCompile Include="Button.cpp">
-      <Filter>Ressources</Filter>
-    </ClCompile>
     <ClCompile Include="Player.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
@@ -59,9 +59,6 @@
     </ClCompile>
     <ClCompile Include="ProjectileComponent.cpp">
       <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PlayerGUI.cpp">
-      <Filter>Ressources</Filter>
     </ClCompile>
     <ClCompile Include="Component.cpp">
       <Filter>Components</Filter>
@@ -81,9 +78,6 @@
     <ClCompile Include="InputComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>Ressources</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyMaster.cpp">
       <Filter>Entities</Filter>
     </ClCompile>
@@ -92,6 +86,18 @@
     </ClCompile>
     <ClCompile Include="EnemySpawnerComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PauseMenu.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerGUI.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Gui.cpp">
+      <Filter>GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +113,6 @@
     <ClInclude Include="MainMenuState.h">
       <Filter>States</Filter>
     </ClInclude>
-    <ClInclude Include="Button.h">
-      <Filter>Ressources</Filter>
-    </ClInclude>
     <ClInclude Include="Player.h">
       <Filter>Entities</Filter>
     </ClInclude>
@@ -124,9 +127,6 @@
     </ClInclude>
     <ClInclude Include="Config.h">
       <Filter>Fichiers de ressources</Filter>
-    </ClInclude>
-    <ClInclude Include="PlayerGUI.h">
-      <Filter>Ressources</Filter>
     </ClInclude>
     <ClInclude Include="Component.h">
       <Filter>Components</Filter>
@@ -157,6 +157,15 @@
     </ClInclude>
     <ClInclude Include="EnemySpawnerComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PauseMenu.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerGUI.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Gui.h">
+      <Filter>GUI</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

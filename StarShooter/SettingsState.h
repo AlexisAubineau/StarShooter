@@ -1,22 +1,45 @@
-#pragma once
+#ifndef SETTINGSSTATE_H
+#define SETTINGSSTATE_H
+
+#include "Gui.h"
 #include "State.h"
 
-class SettingsState:
+class SettingsState :
 	public State
 {
+private:
+	//variables
+	sf::Texture backgroundTexture;
+	sf::RectangleShape background;
+	sf::Font font;
+
+	std::map<std::string, gui::Button*> buttons;
+	std::map<std::string, gui::DropDownList*> dropDownLists;
+
+	sf::Text optionsText;
+
+	std::vector<sf::VideoMode> video_modes;
+
+	//Functions
+	void initVariables();
+	void initBackground();
+	void initFonts();
+	void initKeybinds();
+	void initGUI();
+	void initText();
+	
 public:
 	SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
 	virtual ~SettingsState();
 
-	//Functions
-	void initKeybinds();
-	void initTextures();
-
-private:
+	//Accessors
 
 	//Functions
+	void updateInput(const float& dt);
+	void updateGUI(const float& dt);
 	void update(const float& dt);
-	void updateInput(const float& dt){};
+	void renderGUI(sf::RenderTarget* target = NULL);
 	void render(sf::RenderTarget* target = NULL);
 };
 
+#endif // SETTINGSSTATE_H

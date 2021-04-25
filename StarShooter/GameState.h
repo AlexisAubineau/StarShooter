@@ -6,6 +6,7 @@
 #include "EnemySpawnerComponent.h"
 #include "Player.h"
 #include "State.h"
+#include "PauseMenu.h"
 
 class Entity;
 
@@ -15,15 +16,18 @@ class GameState :
 private:
 	//Variables
 	Player* player;
-	EnemyMaster* enemy;
-	Bullet* bullet;
-	EnemySpawnerComponent* EnemyType1Spawner; 
+	EnemySpawnerComponent* EnemyType1Spawner;
+	PauseMenu* pause_menu;
+
+	sf::Font font;
 
 	//Functions
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
 	void initEnemies(sf::RenderWindow* window);
+	void initFonts();
+	void initPauseMenu();
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
@@ -31,6 +35,7 @@ public:
 
 	//Functions
 	void updateInput(const float& dt);
+	void updatePauseMenuButtons();
 	void update(const float& dt);
 	void render(sf::RenderTarget* target = NULL);
 };

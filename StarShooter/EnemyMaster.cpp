@@ -6,7 +6,7 @@ void EnemyMaster::initComponents()
 	movementComponent = component->createMovementComponent(m_velocity, m_accel, m_accel);
 
 	// Component Projectile Player 
-	projectileComponent = component->createProjectileComponent("ENEMY_PROJECTILE", "SHIP_PROJECTILE",config->EnemyType1Projectile, 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, m_shoot_delay);
+	projectileComponent = component->createProjectileComponent("ENEMY_PROJECTILE", "SHIP_PROJECTILE",config->EnemyType1Projectile, 10.f, 0, 0, 4, 0, 120, 90, -0.0025f, 10.f, m_shoot_delay);
 
 	// Player Hitbox Component
 	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 0, 80, 60, true);
@@ -53,7 +53,7 @@ void EnemyMaster::attack()
 {
 	if (projectileComponent)
 	{
-		projectileComponent->FireProjectile((getPosition().x*-1), (getPosition().y*-1));
+		projectileComponent->FireProjectile((getPosition().x), (getPosition().y));
 	}
 	
 }

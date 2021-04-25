@@ -154,7 +154,7 @@
     <ClCompile Include="Animation.cpp" />
     <ClCompile Include="AnimationComponent.cpp" />
     <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Button.cpp" />
+    <ClCompile Include="Gui.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EnemyMaster.cpp" />
     <ClCompile Include="EnemySpawnerComponent.cpp" />
@@ -163,6 +163,7 @@
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainMenuState.cpp" />
@@ -177,7 +178,7 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="AnimationComponent.h" />
     <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Button.h" />
+    <ClInclude Include="Gui.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="EnemyMaster.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="GameState.h" />
     <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="InputComponent.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="PlayerGUI.h" />
     <ClInclude Include="MainMenuState.h" />
     <ClInclude Include="MovementComponent.h" />

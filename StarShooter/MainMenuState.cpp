@@ -46,22 +46,22 @@ void MainMenuState::initKeybinds()
 
 void MainMenuState::initButtons()
 {
-	buttons["GAME_STATE"] = new Button(
-		100, 480.f, 250.f, 50.f,
+	buttons["GAME_STATE"] = new gui::Button(
+		100.f, 480.f, 250.f, 50.f,
 		&font, "Play", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
-	buttons["SETTINGS"] = new Button(
-		100, 580, 250, 50,
+	buttons["SETTINGS_STATE"] = new gui::Button(
+		100.f, 580.f, 250.f, 50.f,
 		&font, "Settings", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
-	buttons["EXIT_STATE"] = new Button(
-		100, 880, 250, 50,
+	buttons["EXIT_STATE"] = new gui::Button(
+		100.f, 880.f, 250.f, 50.f,
 		&font, "Quit", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
@@ -104,7 +104,7 @@ void MainMenuState::updateButtons()
 		states->push(new GameState(window, supportedKeys, states));
 	}
 
-	if (buttons["SETTINGS"]->isPressed())
+	if (buttons["SETTINGS_STATE"]->isPressed())
 	{
 		states->push(new SettingsState(window, supportedKeys, states));
 	}
@@ -150,4 +150,3 @@ void MainMenuState::render(sf::RenderTarget* target)
 	mouseText.setString(ss.str());
 	target->draw(mouseText);*/
 }
-
