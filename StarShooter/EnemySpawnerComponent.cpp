@@ -33,6 +33,7 @@ EnemySpawnerComponent::~EnemySpawnerComponent()
 void EnemySpawnerComponent::spawnEnemy(float x, float y)
 {
 	EnemyMaster* enemy = new EnemyMaster(x,y);
+	enemy->window = window;
 	enemy->m_damage = m_damage;
 	enemy->m_velocity = m_velocity;
 	enemy->initTexture(m_textureName,m_texturePathName);

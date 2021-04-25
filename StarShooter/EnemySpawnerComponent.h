@@ -32,6 +32,7 @@ private:
 	
 public:
 	std::list<EnemyMaster*> m_EnemyList;
+	sf::RenderWindow* window;
 	
 	EnemySpawnerComponent(std::string textureName,
 		std::string animationKey,

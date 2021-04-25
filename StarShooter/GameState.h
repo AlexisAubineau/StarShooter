@@ -15,6 +15,7 @@ class GameState :
 private:
 	//Variables
 	Player* player;
+	EnemyMaster* enemy;
 	Bullet* bullet;
 	EnemySpawnerComponent* EnemyType1Spawner; 
 
@@ -22,7 +23,7 @@ private:
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
-	void initEnemies();
+	void initEnemies(sf::RenderWindow* window);
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);

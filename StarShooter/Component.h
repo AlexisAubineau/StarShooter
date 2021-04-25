@@ -31,7 +31,8 @@ public:
 		float damage,
 		float delay);
 	InputComponent* createInputComponent();
-	HitboxComponent* createHitboxComponent(sf::Sprite& sprite, const float offset_x, const float offset_y, const float width, const float height, const bool isDebug);	EnemySpawnerComponent* createEnemySpawnerComponent(std::string textureName,
+	HitboxComponent* createHitboxComponent(sf::Sprite& sprite, const float offset_x, const float offset_y, const float width, const float height, const bool isDebug);
+	EnemySpawnerComponent* createEnemySpawnerComponent(std::string textureName,
 		std::string animationKey,
 		std::string texturePathName,
 		float timer,

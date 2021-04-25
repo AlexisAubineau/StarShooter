@@ -1,5 +1,7 @@
 #include "GameState.h"
 
+#include "EnemyMaster.h"
+
 //Initializer Functions
 void GameState::initKeybinds()
 {
@@ -23,7 +25,7 @@ void GameState::initPlayers()
 	player = new Player(20, 540);
 }
 
-void GameState::initEnemies()
+void GameState::initEnemies(sf::RenderWindow* m_window)
 {
 	EnemyType1Spawner = new EnemySpawnerComponent("ENEMY_TYPE1",
 		"ENEMY",
@@ -39,10 +41,11 @@ void GameState::initEnemies()
 		1.f,
 		5.f,
 		2.0f);
-
+	EnemyType1Spawner->window = m_window;
 	EnemyType1Spawner->spawnEnemy(980, 540);
-	EnemyType1Spawner->spawnEnemy(840,320);
-	EnemyType1Spawner->spawnEnemy(980,610);
+	
+	/*EnemyType1Spawner->spawnEnemy(840,320);
+	EnemyType1Spawner->spawnEnemy(980,610);*/
 }
 
 //Constructors / Destructors
@@ -52,7 +55,7 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	initKeybinds();
 	initTextures();
 	initPlayers();
-	initEnemies();
+	initEnemies(window);
 }
 
 GameState::~GameState()

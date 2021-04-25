@@ -6,12 +6,14 @@ class EnemyMaster :
 	public Entity
 {
 private:
-
 	
+
 protected:
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
 	ProjectileComponent* projectileComponent;
+	HitboxComponent* hitboxComponent;
+
 public:
 	EnemyMaster(float m_posx, float m_posy);
 	virtual ~EnemyMaster();
@@ -22,6 +24,8 @@ public:
 	float m_damage = 1.0f;
 	float m_velocity = 100.f;
 	float m_accel = 5.f;
+	
+	sf::RenderWindow* window;
 
 	//functions
 	void move(const float& dt);
