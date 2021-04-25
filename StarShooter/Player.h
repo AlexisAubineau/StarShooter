@@ -27,6 +27,7 @@ protected:
 	MovementComponent* movementComponent;
 	ProjectileComponent* projectileComponent;
 	InputComponent* inputComponent;
+	HitboxComponent* hitboxComponent;
 
 public:
 	Player(float x, float y);

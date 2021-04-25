@@ -37,3 +37,9 @@ InputComponent* Component::createInputComponent()
 	auto* const inputComponent = new InputComponent();
 	return inputComponent;
 }
+
+HitboxComponent* Component::createHitboxComponent(sf::Sprite& sprite, const float offset_x, const float offset_y, const float width, const float height, const bool isDebug)
+{
+	auto* const hitboxComponent = new HitboxComponent(sprite, offset_x, offset_y, width, height, isDebug);
+	return hitboxComponent;
+}

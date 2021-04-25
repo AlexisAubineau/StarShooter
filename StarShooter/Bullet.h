@@ -13,6 +13,7 @@ protected:
 	//Components
 	AnimationComponent* animationComponent;
 	MovementComponent* movementComponent;
+	HitboxComponent* hitboxComponent;
 
 public:
 

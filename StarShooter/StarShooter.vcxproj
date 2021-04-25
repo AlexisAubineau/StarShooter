@@ -160,6 +160,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="HitboxComponent.cpp" />
     <ClCompile Include="InputComponent.cpp" />
     <ClCompile Include="PlayerGUI.cpp" />
     <ClCompile Include="main.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="HitboxComponent.h" />
     <ClInclude Include="InputComponent.h" />
     <ClInclude Include="PlayerGUI.h" />
     <ClInclude Include="MainMenuState.h" />

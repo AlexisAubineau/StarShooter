@@ -3,6 +3,7 @@
 //Initializer functions
 void Player::initVariables()
 {
+	player_gui = new PlayerGUI(this);
 }
 
 void Player::initComponents()
@@ -17,7 +18,11 @@ void Player::initComponents()
 	// Component Projectile Player 
 	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", config->ProjectilePath, 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
 
+	// Input for player
 	inputComponent = component->createInputComponent();
+
+	// Player Hitbox Component
+	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 10, component->sprite.getGlobalBounds().width, 70, true);
 }
 
 void Player::initTexture()
@@ -29,14 +34,11 @@ void Player::initTexture()
 
 //Contructors / Destructors
 Player::Player(float x, float y)
-{
+{	
 	initVariables();
 	initTexture();
 	initComponents();
 	setPosition(x, y);
-	
-	player_gui = new PlayerGUI(this);
-	
 	maxLife(max_life);
 	Life(current_life);
 }
@@ -48,6 +50,7 @@ Player::~Player()
 	delete projectileComponent;
 	delete inputComponent;
 	delete player_gui;
+	delete hitboxComponent;
 }
 
 void Player::move(const float dir_x, const float dir_y, const float& dt)
@@ -80,11 +83,14 @@ void Player::update(const float& dt)
 	player_gui->update(dt);
 	
 	inputComponent->updateInput(dt, this, keybinds, supportedKeys, movementComponent->locationAllowed);
+
+	hitboxComponent->update();
 }
 
 void Player::render(sf::RenderTarget* target)
 {
 	target->draw(component->sprite);
 	projectileComponent->render(target);
+	hitboxComponent->render(target);
 	player_gui->render(target);
 }
