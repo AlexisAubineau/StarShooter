@@ -23,6 +23,28 @@ void GameState::initPlayers()
 	player = new Player(20, 540);
 }
 
+void GameState::initEnemies()
+{
+	EnemyType1Spawner = new EnemySpawnerComponent("ENEMY_TYPE1",
+		"ENEMY",
+		config->EnemyType1Sprite,
+		2.f,
+		0,
+		0,
+		0,
+		0,
+		90,
+		60,
+		10.f,
+		1.f,
+		5.f,
+		2.0f);
+
+	EnemyType1Spawner->spawnEnemy(980, 540);
+	EnemyType1Spawner->spawnEnemy(840,320);
+	EnemyType1Spawner->spawnEnemy(980,610);
+}
+
 //Constructors / Destructors
 GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
 	: State(window, supportedKeys, states)
@@ -30,11 +52,13 @@ GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* suppo
 	initKeybinds();
 	initTextures();
 	initPlayers();
+	initEnemies();
 }
 
 GameState::~GameState()
 {
 	delete player;
+	delete EnemyType1Spawner;
 }
 
 void GameState::updateInput(const float& dt)
@@ -52,6 +76,7 @@ void GameState::update(const float& dt)
 	update_mouse_position();
 	updateInput(dt);
 	player->update(dt);
+	EnemyType1Spawner->update(dt);
 }
 
 void GameState::render(sf::RenderTarget* target)
@@ -59,4 +84,5 @@ void GameState::render(sf::RenderTarget* target)
 	if (!target)
 		target = window;
 	player->render(target);
+	EnemyType1Spawner->render(target);
 }

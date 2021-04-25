@@ -157,6 +157,7 @@
     <ClCompile Include="Button.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="EnemyMaster.cpp" />
+    <ClCompile Include="EnemySpawnerComponent.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameState.cpp" />
@@ -180,6 +181,7 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="Config.h" />
     <ClInclude Include="EnemyMaster.h" />
+    <ClInclude Include="EnemySpawnerComponent.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameState.h" />

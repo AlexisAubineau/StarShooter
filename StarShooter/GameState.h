@@ -3,6 +3,7 @@
 
 #include <fstream>
 #include "Bullet.h"
+#include "EnemySpawnerComponent.h"
 #include "Player.h"
 #include "State.h"
 
@@ -15,11 +16,13 @@ private:
 	//Variables
 	Player* player;
 	Bullet* bullet;
+	EnemySpawnerComponent* EnemyType1Spawner; 
 
 	//Functions
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();
+	void initEnemies();
 
 public:
 	GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states);
