@@ -5,21 +5,21 @@
 #include<map>
 #include <iostream>
 #include <fstream>
+#include <string>
 
 #include "MainMenuState.h"
 #include "Config.h"
+#include "GraphicsSettings.h"
 #include "State.h"
 
 class Game
 {
 private:
-	//Variables 
+	//Variables
+	Config* config = new Config;
+	GraphicsSettings gfxSettings;
 	sf::RenderWindow *window;
 	sf::Event sfEvent;
-
-	std::vector<sf::VideoMode> videoModes;
-	sf::ContextSettings windowSettings;
-	bool fullscreen;
 
 	sf::Clock dtClock; 
 	float dt;
@@ -27,11 +27,10 @@ private:
 	std::stack<State*> states;
 
 	std::map<std::string, int> supportedKeys;
-
-	Config* config = new Config;
 	
 	//Initialization
 	void initVariables();
+	void initGraphicsSettings();
 	void initWindow();
 	void initKeys();
 	void initStates();

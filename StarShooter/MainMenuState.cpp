@@ -68,8 +68,8 @@ void MainMenuState::initButtons()
 	);
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states)
+MainMenuState::MainMenuState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+	: State(window, supportedKeys, states), gfxSettings(gfxSettings)
 {
 	initVariables();
 	initBackground();
@@ -106,7 +106,7 @@ void MainMenuState::updateButtons()
 
 	if (buttons["SETTINGS_STATE"]->isPressed())
 	{
-		states->push(new SettingsState(window, supportedKeys, states));
+		states->push(new SettingsState(window, gfxSettings, supportedKeys, states));
 	}
 
 	//Quit the game 

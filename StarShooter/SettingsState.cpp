@@ -50,14 +50,14 @@ void SettingsState::initKeybinds()
 void SettingsState::initGUI()
 {
 	buttons["BACK"] = new gui::Button(
-		1500.f, 880.f, 250.f, 50.f,
+		gfxSettings.resolution.width - 1000, gfxSettings.resolution.height - 200, 250.f, 50.f,
 		&font, "Back", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	buttons["APPLY"] = new gui::Button(
-		1300.f, 880.f, 250.f, 50.f,
+		gfxSettings.resolution.width - 800, gfxSettings.resolution.height - 200, 250.f, 50.f,
 		&font, "Apply", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
@@ -86,8 +86,8 @@ void SettingsState::initText()
 	);
 }
 
-SettingsState::SettingsState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states)
+SettingsState::SettingsState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+	: State(window, supportedKeys, states), gfxSettings(gfxSettings)
 {
 	initVariables();
 	initBackground();
@@ -138,8 +138,9 @@ void SettingsState::updateGUI(const float& dt)
 	//Apply selected settings
 	if (buttons["APPLY"]->isPressed()) 
 	{
-		//TEST Remove later !! 
-		window->create(video_modes[dropDownLists["RESOLUTION"]->getActiveElementId()], "Test", sf::Style::Default);
+		//TEST Remove later !!
+		gfxSettings.resolution = video_modes[dropDownLists["RESOLUTION"]->getActiveElementId()];
+		window->create(gfxSettings.resolution, gfxSettings.title, sf::Style::Default);
 	}
 
 	//DropDownList
@@ -183,12 +184,12 @@ void SettingsState::render(sf::RenderTarget* target)
 	target->draw(optionsText);
 
 	//REMOVE LATER !!
-	sf::Text mouseText;
+	/*sf::Text mouseText;
 	mouseText.setPosition(this->mousePosView.x - 20, this->mousePosView.y - 50);
 	mouseText.setFont(this->font);
 	mouseText.setCharacterSize(12);
 	std::stringstream ss;
 	ss << this->mousePosView.x << " " << this->mousePosView.y;
 	mouseText.setString(ss.str());
-	target->draw(mouseText);
+	target->draw(mouseText);*/
 }

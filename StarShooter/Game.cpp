@@ -7,42 +7,30 @@
 void Game::initVariables()
 {
 	window = NULL;
-    fullscreen = false;
     dt = 0.f;
+}
+
+void Game::initGraphicsSettings()
+{
+    gfxSettings.loadFromFile(config->windowSettingsPath);
 }
 
 void Game::initWindow()
 {
-    /*Create a SFML Window using option from a window.ini file.*/
-    std::ifstream ifs(config->windowSettingsPath);
-    videoModes = sf::VideoMode::getFullscreenModes();
-
-    std::string title = "None";
-    sf::VideoMode window_bounds = sf::VideoMode::getDesktopMode();
-    bool fullscreen = false;
-    unsigned framerate_limit = 120;
-    bool vertical_sync_enabled = false;
-    unsigned antialiasing_level = 0;
-	
-	if (ifs.is_open())
-	{
-        std::getline(ifs, title);
-        ifs >> window_bounds.width >> window_bounds.height;
-        ifs >> fullscreen;
-        ifs >> framerate_limit;
-        ifs >> vertical_sync_enabled;
-        ifs >> antialiasing_level;
-	}
-
-    ifs.close();
-	
-	windowSettings.antialiasingLevel = antialiasing_level;
-    if(fullscreen)
-	    window = new sf::RenderWindow (window_bounds, title, sf::Style::Fullscreen, windowSettings);
+    if(gfxSettings.fullscreen)
+	    window = new sf::RenderWindow (
+            gfxSettings.resolution, 
+            gfxSettings.title, 
+            sf::Style::Fullscreen, 
+            gfxSettings.contextSettings);
     else
-        window = new sf::RenderWindow(window_bounds, title, sf::Style::Titlebar | sf::Style::Close, windowSettings);
-    window->setFramerateLimit(framerate_limit);
-    window->setVerticalSyncEnabled(vertical_sync_enabled);
+        window = new sf::RenderWindow(
+            gfxSettings.resolution, 
+            gfxSettings.title, 
+            sf::Style::Titlebar | sf::Style::Close, 
+            gfxSettings.contextSettings);
+    window->setFramerateLimit(gfxSettings.frameRateLimit);
+    window->setVerticalSyncEnabled(gfxSettings.verticalSync);
 }
 
 void Game::initKeys()
@@ -66,12 +54,14 @@ void Game::initKeys()
 
 void Game::initStates()
 {
-    states.push(new MainMenuState(window, &supportedKeys, &states));
+    states.push(new MainMenuState(window, gfxSettings, &supportedKeys, &states));
 }
 
 //Contructors/Deconstructors
 Game::Game()
 {
+    initVariables();
+    initGraphicsSettings();
     initWindow();
     initKeys();
     initStates();
