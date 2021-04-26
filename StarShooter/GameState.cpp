@@ -1,7 +1,5 @@
 #include "GameState.h"
 
-#include "EnemyMaster.h"
-
 //Initializer Functions
 void GameState::initKeybinds()
 {
@@ -50,9 +48,8 @@ void GameState::initEnemies(sf::RenderWindow* m_window)
 
 void GameState::initFonts()
 {
-	if (!font.loadFromFile(config->fontPath)) {
+	if (!font.loadFromFile(config->fontPath))
 		std::cout << "ERROR::MAINMENUSTATE COULD'NT LOAD FONT" << std::endl;
-	}
 }
 
 void GameState::initPauseMenu()

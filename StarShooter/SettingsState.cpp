@@ -19,11 +19,6 @@ void SettingsState::initBackground()
 	);
 
 	background.setFillColor(sf::Color::Black);
-
-	/*if (!backgroundTexture.loadFromFile(config->backgroundPath))
-		std::cout << "ERROR::MAIN_MENU_STATE::FAILED_TO_LOAD_BACKGROUND_TEXTURE" << std::endl;
-
-	background.setTexture(&backgroundTexture);*/
 }
 
 void SettingsState::initFonts()
@@ -50,14 +45,14 @@ void SettingsState::initKeybinds()
 void SettingsState::initGUI()
 {
 	buttons["BACK"] = new gui::Button(
-		gfxSettings.resolution.width - 1000, gfxSettings.resolution.height - 200, 250.f, 50.f,
+		gfxSettings.resolution.width - 400, gfxSettings.resolution.height - 200, 250.f, 50.f,
 		&font, "Back", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	buttons["APPLY"] = new gui::Button(
-		gfxSettings.resolution.width - 800, gfxSettings.resolution.height - 200, 250.f, 50.f,
+		gfxSettings.resolution.width - 200, gfxSettings.resolution.height - 200, 250.f, 50.f,
 		&font, "Apply", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
@@ -69,7 +64,7 @@ void SettingsState::initGUI()
 		video_modes_str.push_back(std::to_string(i.width) + "x" + std::to_string(i.height));
 	}
 	
-	dropDownLists["RESOLUTION"] = new gui::DropDownList(800, 450, 200, 50, font, video_modes_str.data(), video_modes_str.size());
+	dropDownLists["RESOLUTION"] = new gui::DropDownList(880, 450, 450, 50, font, video_modes_str.data(), video_modes_str.size());
 }
 
 void SettingsState::initText()
@@ -134,12 +129,12 @@ void SettingsState::updateGUI(const float& dt)
 	{
 		endState();
 	}
-
+	
 	//Apply selected settings
 	if (buttons["APPLY"]->isPressed()) 
 	{
-		//TEST Remove later !!
 		gfxSettings.resolution = video_modes[dropDownLists["RESOLUTION"]->getActiveElementId()];
+		optionsText.setPosition(sf::Vector2f(100, (static_cast<float>(gfxSettings.resolution.height) / 2) - 100));
 		window->create(gfxSettings.resolution, gfxSettings.title, sf::Style::Default);
 	}
 
@@ -154,7 +149,6 @@ void SettingsState::update(const float& dt)
 {
 	update_mouse_position();
 	updateInput(dt);
-
 	updateGUI(dt);
 }
 
@@ -182,14 +176,4 @@ void SettingsState::render(sf::RenderTarget* target)
 	renderGUI(target);
 
 	target->draw(optionsText);
-
-	//REMOVE LATER !!
-	/*sf::Text mouseText;
-	mouseText.setPosition(this->mousePosView.x - 20, this->mousePosView.y - 50);
-	mouseText.setFont(this->font);
-	mouseText.setCharacterSize(12);
-	std::stringstream ss;
-	ss << this->mousePosView.x << " " << this->mousePosView.y;
-	mouseText.setString(ss.str());
-	target->draw(mouseText);*/
 }
