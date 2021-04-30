@@ -102,6 +102,9 @@
     <ClCompile Include="GraphicsSettings.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
+    <ClCompile Include="EditorSate.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -172,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="GraphicsSettings.h">
       <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="EditorSate.h">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,6 +6,7 @@
 void SettingsState::initVariables()
 {
 	video_modes = sf::VideoMode::getFullscreenModes();
+	//full_screen = sf::VideoMode::;
 }
 
 void SettingsState::initBackground()
@@ -65,6 +66,11 @@ void SettingsState::initGUI()
 	}
 	
 	dropDownLists["RESOLUTION"] = new gui::DropDownList(880, 450, 450, 50, font, video_modes_str.data(), video_modes_str.size());
+
+	std::vector<std::string> bool_active;
+	bool_active = { "FALSE", "TRUE" };
+	
+	dropDownLists["FULLSCREEN"] = new gui::DropDownList(880, 550, 450, 50, font, bool_active.data(), bool_active.size());
 }
 
 void SettingsState::initText()
@@ -134,8 +140,20 @@ void SettingsState::updateGUI(const float& dt)
 	if (buttons["APPLY"]->isPressed()) 
 	{
 		gfxSettings.resolution = video_modes[dropDownLists["RESOLUTION"]->getActiveElementId()];
+		if (dropDownLists["FULLSCREEN"]->getActiveElementId() == 1)
+		{
+			screen_style = sf::Style::Fullscreen;
+			std::cout << "true" << std::endl;
+		}
+		else
+		{
+			screen_style = sf::Style::Default;
+			std::cout << "false" << std::endl;
+		}
+
+		
 		optionsText.setPosition(sf::Vector2f(100, (static_cast<float>(gfxSettings.resolution.height) / 2) - 100));
-		window->create(gfxSettings.resolution, gfxSettings.title, sf::Style::Default);
+		window->create(gfxSettings.resolution, gfxSettings.title, screen_style, gfxSettings.contextSettings);
 	}
 
 	//DropDownList
