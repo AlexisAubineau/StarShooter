@@ -10,8 +10,8 @@ void MainMenuState::initBackground()
 	background.setSize(
 		sf::Vector2f
 		(
-			static_cast<float>(window->getSize().x), 
-			static_cast<float>(window->getSize().y)
+			window->getSize().x * ratio, 
+			window->getSize().y * ratio
 		)
 	);
 	
@@ -52,13 +52,14 @@ void MainMenuState::initButtons()
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
-
-	buttons["SETTINGS_STATE"] = new gui::Button(
+	
+	// Desactivate
+	/*buttons["SETTINGS_STATE"] = new gui::Button(
 		100.f, 580.f, 250.f, 50.f,
 		&font, "Settings", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
-	);
+	);*/
 
 	buttons["EXIT_STATE"] = new gui::Button(
 		100.f, 880.f, 250.f, 50.f,
@@ -104,10 +105,10 @@ void MainMenuState::updateButtons()
 		states->push(new GameState(window, supportedKeys, states));
 	}
 
-	if (buttons["SETTINGS_STATE"]->isPressed())
+	/*if (buttons["SETTINGS_STATE"]->isPressed())
 	{
 		states->push(new SettingsState(window, gfxSettings, supportedKeys, states));
-	}
+	}*/
 
 	//Quit the game 
 	if (buttons["EXIT_STATE"]->isPressed()) {
@@ -139,14 +140,4 @@ void MainMenuState::render(sf::RenderTarget* target)
 	target->draw(background);
 	
 	renderButtons(target);
-
-	//REMOVE LATER !!
-	/*sf::Text mouseText;
-	mouseText.setPosition(this->mousePosView.x - 20, this->mousePosView.y - 50);
-	mouseText.setFont(this->font);
-	mouseText.setCharacterSize(12);
-	std::stringstream ss;
-	ss << this->mousePosView.x << " " << this->mousePosView.y;
-	mouseText.setString(ss.str());
-	target->draw(mouseText);*/
 }

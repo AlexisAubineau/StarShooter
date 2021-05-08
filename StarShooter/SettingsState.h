@@ -22,13 +22,15 @@ private:
 
 	std::vector<sf::VideoMode> video_modes;
 	sf::Uint32 screen_style;
-
+	
 	//Functions
 	void initVariables();
 	void initBackground();
 	void initFonts();
 	void initKeybinds();
 	void initGUI();
+	void initButtons();
+	void initDropDownLists();
 	void initText();
 	
 public:

@@ -19,6 +19,7 @@ protected:
 	bool paused;
 	float keytime;
 	float keytimeMax;
+	float ratio;
 
 	sf::Vector2i mousePosScreen;
 	sf::Vector2i mousePosWindow;

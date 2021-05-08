@@ -6,7 +6,6 @@
 void SettingsState::initVariables()
 {
 	video_modes = sf::VideoMode::getFullscreenModes();
-	//full_screen = sf::VideoMode::;
 }
 
 void SettingsState::initBackground()
@@ -14,8 +13,8 @@ void SettingsState::initBackground()
 	background.setSize(
 		sf::Vector2f
 		(
-			static_cast<float>(window->getSize().x),
-			static_cast<float>(window->getSize().y)
+			window->getSize().x * ratio,
+			window->getSize().y * ratio
 		)
 	);
 
@@ -45,39 +44,50 @@ void SettingsState::initKeybinds()
 
 void SettingsState::initGUI()
 {
+	initButtons();
+	initDropDownLists();
+}
+
+void SettingsState::initButtons()
+{
 	buttons["BACK"] = new gui::Button(
-		gfxSettings.resolution.width - 400, gfxSettings.resolution.height - 200, 250.f, 50.f,
+		gfxSettings.resolution.width - 200, gfxSettings.resolution.height - 100, 250.f, 50.f,
 		&font, "Back", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 
 	buttons["APPLY"] = new gui::Button(
-		gfxSettings.resolution.width - 200, gfxSettings.resolution.height - 200, 250.f, 50.f,
+		gfxSettings.resolution.width - 400, gfxSettings.resolution.height - 100, 250.f, 50.f,
 		&font, "Apply", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
+}
 
+void SettingsState::initDropDownLists()
+{
 	std::vector<std::string> video_modes_str;
-	for(auto &i : video_modes)
+	for (auto& i : video_modes)
 	{
 		video_modes_str.push_back(std::to_string(i.width) + "x" + std::to_string(i.height));
 	}
-	
-	dropDownLists["RESOLUTION"] = new gui::DropDownList(880, 450, 450, 50, font, video_modes_str.data(), video_modes_str.size());
+	dropDownLists["RESOLUTION"] = new gui::DropDownList(gfxSettings.resolution.width / 2, gfxSettings.resolution.height - (650*ratio), 450, 50, font, video_modes_str.data(), video_modes_str.size());
 
 	std::vector<std::string> bool_active;
 	bool_active = { "FALSE", "TRUE" };
-	
-	dropDownLists["FULLSCREEN"] = new gui::DropDownList(880, 550, 450, 50, font, bool_active.data(), bool_active.size());
+
+	dropDownLists["FULLSCREEN"] = new gui::DropDownList(gfxSettings.resolution.width - 1300, gfxSettings.resolution.height - 450, 450, 50, font, bool_active.data(), bool_active.size());
 }
 
 void SettingsState::initText()
 {
 	optionsText.setFont(font);
 
-	optionsText.setPosition(sf::Vector2f(100.f, 450.f));
+	optionsText.setPosition(sf::Vector2f(
+		gfxSettings.resolution.width -100,
+		gfxSettings.resolution.height - 450
+	));
 	optionsText.setCharacterSize(40);
 	optionsText.setFillColor(sf::Color(255, 255, 255, 200));
 
@@ -131,10 +141,10 @@ void SettingsState::updateGUI(const float& dt)
 	}
 	
 	//Quit the game 
-	if (buttons["BACK"]->isPressed()) 
+	/*if (buttons["BACK"]->isPressed()) 
 	{
 		endState();
-	}
+	}*/
 	
 	//Apply selected settings
 	if (buttons["APPLY"]->isPressed()) 
@@ -150,9 +160,9 @@ void SettingsState::updateGUI(const float& dt)
 			screen_style = sf::Style::Default;
 			std::cout << "false" << std::endl;
 		}
-
-		
-		optionsText.setPosition(sf::Vector2f(100, (static_cast<float>(gfxSettings.resolution.height) / 2) - 100));
+		initButtons();
+		initDropDownLists();
+		optionsText.setPosition(sf::Vector2f(optionsText.getPosition().x, (static_cast<float>(gfxSettings.resolution.height/ 2) * ratio)));
 		window->create(gfxSettings.resolution, gfxSettings.title, screen_style, gfxSettings.contextSettings);
 	}
 
@@ -168,6 +178,9 @@ void SettingsState::update(const float& dt)
 	update_mouse_position();
 	updateInput(dt);
 	updateGUI(dt);
+	ratio = gfxSettings.resolution.width / gfxSettings.resolution.height;
+
+	std::cout << gfxSettings.resolution.width << std::endl;
 }
 
 void SettingsState::renderGUI(sf::RenderTarget* target)

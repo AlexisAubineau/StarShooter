@@ -11,6 +11,8 @@ State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys
 	paused = false;
 	keytime = 0.f;
 	keytimeMax = 10.f;
+	ratio = window->getSize().x / window->getSize().y;
+	std::cout << window->getSize().x * ratio << std::endl;
 }
 
 State::~State()

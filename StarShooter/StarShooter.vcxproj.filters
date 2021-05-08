@@ -103,7 +103,7 @@
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="EditorSate.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>States</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,7 +177,7 @@
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="EditorSate.h">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>States</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
