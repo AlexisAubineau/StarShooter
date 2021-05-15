@@ -3,7 +3,7 @@
 //Initializer functions
 void Player::initVariables()
 {
-	player_gui = new PlayerGUI(this);
+	
 }
 
 void Player::initComponents()
@@ -41,6 +41,8 @@ Player::Player(float x, float y)
 	setPosition(x, y);
 	maxLife(max_life);
 	Life(current_life);
+	setHitbox(hitboxComponent);
+	setMovement(movementComponent);
 }
 
 Player::~Player()
@@ -49,7 +51,6 @@ Player::~Player()
 	delete animationComponent;
 	delete projectileComponent;
 	delete inputComponent;
-	delete player_gui;
 	delete hitboxComponent;
 }
 
@@ -73,24 +74,20 @@ void Player::attack()
 
 void Player::update(const float& dt)
 {
-	movementComponent->checkLocationAllowed(window, component->sprite);
 	movementComponent->update(dt);
 	
 	animationComponent->play("SHIP_IDLE", dt);
 	
 	projectileComponent->update(dt, window);
 	
-	player_gui->update(dt);
-	
-	inputComponent->updateInput(dt, this, keybinds, supportedKeys, movementComponent->locationAllowed);
+	inputComponent->updateInput(dt, this, keybinds, supportedKeys);
 
 	hitboxComponent->update();
 }
 
-void Player::render(sf::RenderTarget* target)
+void Player::render(sf::RenderTarget& target)
 {
-	target->draw(component->sprite);
+	target.draw(component->sprite);
 	projectileComponent->render(target);
-	hitboxComponent->render(target);
-	player_gui->render(target);
+	hitboxComponent->render(&target);
 }

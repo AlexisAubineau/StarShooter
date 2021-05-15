@@ -45,13 +45,13 @@ void PlayerGUI::update(const float& dt)
 	updateHpBar();
 }
 
-void PlayerGUI::renderHPBar(sf::RenderTarget* target)
+void PlayerGUI::renderHPBar(sf::RenderTarget& target)
 {
-	target->draw(hpBarBack);
-	target->draw(hpBarInner);
+	target.draw(hpBarBack);
+	target.draw(hpBarInner);
 }
 
-void PlayerGUI::render(sf::RenderTarget* target)
+void PlayerGUI::render(sf::RenderTarget& target)
 {
 	renderHPBar(target);
 }

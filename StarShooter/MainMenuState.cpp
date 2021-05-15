@@ -1,5 +1,7 @@
 #include "MainMenuState.h"
 
+#include "EditorSate.h"
+
 //Initialiazer fuctions
 void MainMenuState::initVariables()
 {
@@ -10,8 +12,8 @@ void MainMenuState::initBackground()
 	background.setSize(
 		sf::Vector2f
 		(
-			window->getSize().x * ratio, 
-			window->getSize().y * ratio
+			static_cast<float>(window->getSize().x), 
+			static_cast<float>(window->getSize().y)
 		)
 	);
 	
@@ -47,30 +49,36 @@ void MainMenuState::initKeybinds()
 void MainMenuState::initButtons()
 {
 	buttons["GAME_STATE"] = new gui::Button(
-		100.f, 480.f, 250.f, 50.f,
+		100.f, 480.f, 250.f, 65.f,
 		&font, "Play", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 	
-	// Desactivate
-	/*buttons["SETTINGS_STATE"] = new gui::Button(
-		100.f, 580.f, 250.f, 50.f,
+	buttons["SETTINGS_STATE"] = new gui::Button(
+		100.f, 580.f, 250.f, 65.f,
 		&font, "Settings", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
-	);*/
+	);
+
+	this->buttons["EDITOR_STATE"] = new gui::Button(
+		100.f, 680.f, 250.f, 65.f,
+	    &font, "Editor", 50,
+		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
+		sf::Color(70, 70, 70, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
+	);
 
 	buttons["EXIT_STATE"] = new gui::Button(
-		100.f, 880.f, 250.f, 50.f,
+		100.f, 880.f, 250.f, 65.f,
 		&font, "Quit", 50,
 		sf::Color(255, 255, 255, 200), sf::Color(250, 250, 250, 250), sf::Color(20, 20, 20, 50),
 		sf::Color(100, 100, 100, 0), sf::Color(150, 150, 150, 0), sf::Color(20, 20, 20, 0)
 	);
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window, GraphicsSettings& gfxSettings, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states), gfxSettings(gfxSettings)
+MainMenuState::MainMenuState(StateData* state_data)
+	: State(state_data)
 {
 	initVariables();
 	initBackground();
@@ -97,18 +105,28 @@ void MainMenuState::updateButtons()
 	/*Update all the buttons in the state and handles their functionality*/
 	for (auto &it : buttons)
 	{
-		it.second->update(this->mousePosView);
+		it.second->update(mousePosWindow);
 	}
 
 	//New Game
 	if (buttons["GAME_STATE"]->isPressed()) {
-		states->push(new GameState(window, supportedKeys, states));
+		states->push(new GameState(stateData));
 	}
 
-	/*if (buttons["SETTINGS_STATE"]->isPressed())
+	//Editor
+	if (this->buttons["EDITOR_STATE"]->isPressed())
 	{
-		states->push(new SettingsState(window, gfxSettings, supportedKeys, states));
-	}*/
+		this->states->push(new EditorState(stateData));
+	}
+
+	if (buttons["SETTINGS_STATE"]->isPressed())
+	{
+		/* You could activate him to see what it is and set some value to test like Resolution and fullscreen
+		 * but so many work on ratio to do and no enough time to made it ^^'
+		 */
+		
+		//states->push(new SettingsState(stateData));
+	}
 
 	//Quit the game 
 	if (buttons["EXIT_STATE"]->isPressed()) {

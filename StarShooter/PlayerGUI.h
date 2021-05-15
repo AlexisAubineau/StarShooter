@@ -49,7 +49,7 @@ public:
 	void updateHpBar();
 	void update(const float& dt);
 
-	void renderHPBar(sf::RenderTarget* target);
-	void render(sf::RenderTarget* target);
+	void renderHPBar(sf::RenderTarget& target);
+	void render(sf::RenderTarget& target);
 };
 #endif //PLAYERGUI_H

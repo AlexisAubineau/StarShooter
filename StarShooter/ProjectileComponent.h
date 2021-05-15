@@ -3,11 +3,9 @@
 
 #include <list>
 #include <string>
-#include <iostream>
 #include <SFML/Graphics/RenderTarget.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/System/Clock.hpp>
-#include <SFML/System/Time.hpp>
 
 class Bullet;
 
@@ -53,7 +51,7 @@ public:
 	void FireProjectile(float x, float y);
 	void update(const float& dt, sf::RenderWindow* window);
 	void setProjectileTexture(std::string texturename, std::string texturePathName);
-	void render(sf::RenderTarget* target);
+	void render(sf::RenderTarget& target);
 	bool checkLocationAllowed(sf::RenderWindow* m_window, std::list<Bullet*>::iterator bullet);
 };
 

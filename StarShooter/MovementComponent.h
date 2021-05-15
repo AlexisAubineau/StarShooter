@@ -1,8 +1,9 @@
 #ifndef MOVEMENTCOMPONENT_H
 #define MOVEMENTCOMPONENT_H
 
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <SFML/Graphics/Sprite.hpp>
+#include <SFML/Graphics.hpp>
+
+enum movement_states { IDLE = 0, MOVING, MOVING_LEFT, MOVING_RIGHT, MOVING_UP, MOVING_DOWN };
 
 class MovementComponent
 {
@@ -14,24 +15,27 @@ private:
 	float maxVelocity;
 	float acceleration;
 	float deceleration;
-	float m_dir_x = 0.f;
-	float m_dir_y = 0.f;
 
 	//Initializer functions
 
 public:
-	bool locationAllowed;
 	
-	MovementComponent(sf::Sprite& sprite, float maxVelocity, float acceleration, float deceleration);
+	MovementComponent(sf::Sprite& sprite,
+		float maxVelocity, float acceleration, float deceleration);
 	virtual ~MovementComponent();
 
 	//Accessors
-	const sf::Vector2f& getVelocity() const;
+	const float& getMaxVelocity() const;
+	const sf::Vector2f& getVelocity();
 
 	//Functions
+	const bool getState(const short unsigned state) const;
+	void stopVelocity();
+	void stopVelocityX();
+	void stopVelocityY();
+
 	void move(const float x, const float y, const float& dt);
 	void update(const float& dt);
-	void checkLocationAllowed(sf::RenderWindow* m_window, sf::Sprite m_sprite);
 };
  
 #endif // !MOVEMENTCOMPONENT_H

@@ -1,5 +1,7 @@
 #include "EnemyMaster.h"
 
+#include <iostream>
+
 void EnemyMaster::initComponents()
 {
 	// Movement Component Player
@@ -60,7 +62,6 @@ void EnemyMaster::attack()
 
 void EnemyMaster::update(const float& dt, std::string m_animationKey)
 {
-	movementComponent->checkLocationAllowed(window, component->sprite);
 	movementComponent->update(dt);
 	move(dt);
 	animationComponent->play(m_animationKey, dt);
@@ -69,9 +70,9 @@ void EnemyMaster::update(const float& dt, std::string m_animationKey)
 	attack();
 }
 
-void EnemyMaster::render(sf::RenderTarget* target)
+void EnemyMaster::render(sf::RenderTarget& target)
 {
-	target->draw(component->sprite);
+	target.draw(component->sprite);
 	projectileComponent->render(target);
-	hitboxComponent->render(target);
+	hitboxComponent->render(&target);
 }

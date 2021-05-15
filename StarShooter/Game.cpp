@@ -8,6 +8,8 @@ void Game::initVariables()
 {
 	window = NULL;
     dt = 0.f;
+
+    gridSize = 100.f;
 }
 
 void Game::initGraphicsSettings()
@@ -52,9 +54,18 @@ void Game::initKeys()
         std::cout << i.first << " " << i.second << "\n";
 }
 
+void Game::initStateData()
+{
+    stateData.window = window;
+    stateData.gfxSettings = &gfxSettings;
+    stateData.supportedKeys = &supportedKeys;
+    stateData.states = &states;
+    stateData.gridSize = gridSize;
+}
+
 void Game::initStates()
 {
-    states.push(new MainMenuState(window, gfxSettings, &supportedKeys, &states));
+    states.push(new MainMenuState(&stateData));
 }
 
 //Contructors/Deconstructors
@@ -64,6 +75,7 @@ Game::Game()
     initGraphicsSettings();
     initWindow();
     initKeys();
+    initStateData();
     initStates();
 }
 
@@ -103,16 +115,20 @@ void Game::updateSFMLEvents()
 
 void Game::update()
 {
-    this->updateSFMLEvents();
+    updateSFMLEvents();
 
-    if (!states.empty()) {
-        states.top()->update(dt);
+    if (!states.empty()) 
+    {
+        if (window->hasFocus())
+        {
+            states.top()->update(dt);
 
-        if (states.top()->getQuit()) {
-            
-            states.top()->endState();
-            delete states.top();
-            states.pop();
+            if (states.top()->getQuit()) {
+
+                states.top()->endState();
+                delete states.top();
+                states.pop();
+            }
         }
     }
     //Application end
@@ -130,15 +146,15 @@ void Game::render()
     if (!states.empty())
         states.top()->render(window);
 	
-    this->window->display();
+    window->display();
 }
 
 void Game::run()
 {
     while (window->isOpen())
     {
-        updateDt(); 
-		update();
-		render();
+        updateDt();
+        update();
+        render();
     }
 }

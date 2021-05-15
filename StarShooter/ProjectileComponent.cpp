@@ -71,7 +71,7 @@ void ProjectileComponent::setProjectileTexture(std::string texturename, std::str
 	}
 }
 
-void ProjectileComponent::render(sf::RenderTarget* target)
+void ProjectileComponent::render(sf::RenderTarget& target)
 {
 	for (Bullet* element : m_BulletList)
 	{

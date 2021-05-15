@@ -24,7 +24,7 @@ gui::Button::Button(float x, float y, float width, float height,
 	this->text.setCharacterSize(character_size);
 	this->text.setPosition(
 		shape.getPosition().x + (shape.getGlobalBounds().width / 2.f) - this->text.getGlobalBounds().width / 2.f,
-		shape.getPosition().y + (shape.getGlobalBounds().height / 2.f) - this->text.getGlobalBounds().height / 2.f
+		shape.getPosition().y
 	);
 	
 	textIdleColor = text_idle_color;
@@ -79,7 +79,7 @@ void gui::Button::setId(const unsigned short id)
 
 //Functions
 
-void gui::Button::update(const sf::Vector2f& mousePos)
+void gui::Button::update(const sf::Vector2i& mousePosWindow)
 {
 	/*Update the booleans for hover and pressed*/
 
@@ -87,7 +87,7 @@ void gui::Button::update(const sf::Vector2f& mousePos)
 	buttonState = BTN_IDLE;
 
 	//Hover
-	if (shape.getGlobalBounds().contains(mousePos)) {
+	if (shape.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosWindow))){
 		buttonState = BTN_HOVER;
 
 		//Active
@@ -193,11 +193,11 @@ void gui::DropDownList::updateKeytime(const float& dt)
 		keytime += 10.f * dt;
 }
 
-void gui::DropDownList::update(const sf::Vector2f& mousePos, const float& dt)
+void gui::DropDownList::update(const sf::Vector2i& mousePosWindow, const float& dt)
 {
 	updateKeytime(dt);
 	
-	activeElement->update(mousePos);
+	activeElement->update(mousePosWindow);
 
 	//Show and hide list
 	if (activeElement->isPressed() && getKeyTime())
@@ -212,7 +212,7 @@ void gui::DropDownList::update(const sf::Vector2f& mousePos, const float& dt)
 	{
 		for (auto& i : list)
 		{
-			i->update(mousePos);
+			i->update(mousePosWindow);
 
 			if(i->isPressed() && getKeyTime())
 			{
@@ -235,3 +235,138 @@ void gui::DropDownList::render(sf::RenderTarget* target)
 		}
 	}
 }
+
+/**************************************
+ *
+ *	Texture Selector
+ *
+ **************************************/
+
+gui::TextureSelector::TextureSelector(float x, float y, float width, float height, float m_gridSize, const sf::Texture* texture_sheet, sf::Font& font, std::string text)
+	: keytimeMax(1.f), keytime(0.f)
+{
+	gridSize = m_gridSize;
+	active = false;
+	hidden = false;
+	float offset = 100.f;
+	
+	bound.setSize(sf::Vector2f(width, height));
+	bound.setPosition(x + offset, y);
+	bound.setFillColor(sf::Color(50, 50, 50, 100));
+	bound.setOutlineThickness(1.f);
+	bound.setOutlineColor(sf::Color(255, 255, 255, 200));
+
+	sheet.setTexture(*texture_sheet);
+	sheet.setPosition(x + offset, y);
+
+	if(sheet.getGlobalBounds().width > bound.getGlobalBounds().width)
+	{
+		sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(bound.getGlobalBounds().width), static_cast<int>(sheet.getGlobalBounds().height)));
+	}
+	if (sheet.getGlobalBounds().height > bound.getGlobalBounds().height)
+	{
+		sheet.setTextureRect(sf::IntRect(0, 0, static_cast<int>(bound.getGlobalBounds().height), static_cast<int>(sheet.getGlobalBounds().width)));
+	}
+
+	selector.setPosition(x + offset, y);
+	selector.setSize(sf::Vector2f(gridSize, gridSize));
+	selector.setFillColor(sf::Color::Transparent);
+	selector.setOutlineThickness(1.f);
+	selector.setOutlineColor(sf::Color::Red);
+
+	textureRect.width = static_cast<int>(gridSize);
+	textureRect.height = static_cast<int>(gridSize);
+
+	hide_btn = new gui::Button(
+		x, y, 70.f, 45.f,
+		&font, text, 35,
+		sf::Color(255, 255, 255, 200), sf::Color(255, 255, 255, 250), sf::Color(255, 255, 255, 50),
+		sf::Color(70, 70, 70, 200), sf::Color(150, 150, 150, 250), sf::Color(20, 20, 20, 50)
+	);
+}
+
+gui::TextureSelector::~TextureSelector()
+{
+	delete hide_btn;
+}
+
+// Accessors
+
+const bool& gui::TextureSelector::getActive() const
+{
+	return active;
+}
+
+const sf::IntRect& gui::TextureSelector::getTextureRect() const
+{
+	return textureRect;
+}
+
+const bool gui::TextureSelector::getKeyTime()
+{
+	if (keytime >= keytimeMax)
+	{
+		keytime = 0.f;
+		return true;
+	}
+	return false;
+}
+
+//Functions
+
+void gui::TextureSelector::updateKeytime(const float& dt)
+{
+	if (keytime < keytimeMax)
+		keytime += 10.f * dt;
+}
+
+void gui::TextureSelector::update(const sf::Vector2i& mousePosWindow, const float& dt)
+{
+	updateKeytime(dt);
+	hide_btn->update(mousePosWindow);
+
+	if(hide_btn->isPressed() && getKeyTime())
+	{
+		if (hidden)
+			hidden = false;
+		else
+			hidden = true;
+	}
+	
+	if (!hidden)
+	{
+		//Update GUI Texture Selector
+		if (bound.getGlobalBounds().contains(static_cast<sf::Vector2f>(mousePosWindow)))
+			active = true;
+		else
+			active = false;
+
+		if (active)
+		{
+			mousePosGrid.x = (mousePosWindow.x - static_cast<int>(bound.getPosition().x)) / static_cast<unsigned>(gridSize);
+			mousePosGrid.y = (mousePosWindow.y - static_cast<int>(bound.getPosition().y)) / static_cast<unsigned>(gridSize);
+
+			selector.setPosition(bound.getPosition().x + mousePosGrid.x * gridSize, bound.getPosition().y + mousePosGrid.y * gridSize);
+		}
+
+		//Update TextureRect
+		textureRect.left = static_cast<int>(selector.getPosition().x - bound.getPosition().x);
+		textureRect.top = static_cast<int>(selector.getPosition().y - bound.getPosition().y);
+
+	}
+}
+
+void gui::TextureSelector::render(sf::RenderTarget& target)
+{
+	if(!hidden)
+	{
+		target.draw(bound);
+		target.draw(sheet);
+
+		if (active)
+			target.draw(selector);
+	}
+	
+	hide_btn->render(&target);
+}
+

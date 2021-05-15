@@ -10,6 +10,8 @@ private:
 
 protected:
 	Component* component = new Component;
+	HitboxComponent* hitbox_component;
+	MovementComponent* movement_component;
  
 public:
 	Entity();
@@ -23,15 +25,25 @@ public:
 
 	//Component functions
 	void setTexture(sf::Texture& texture);
+	void setHitbox(HitboxComponent* hitbox);
+	void setMovement(MovementComponent* movement);
 
+	//Accessors
+ 	virtual const sf::Vector2f& getPosition() const;
+	virtual const sf::Vector2u getGridPosition(const int gridSizeI) const;
+	virtual const sf::FloatRect getGlobalBounds() const;
+	virtual const sf::FloatRect& getNextPositionBounds(const float& dt) const;
+ 	
 	//Functions
 	virtual void setPosition(const float x, const float y);
-	sf::Vector2f getPosition();
 	float Life(float life);
 	float maxLife(float maxLife);
+	virtual void stopVelocity();
+	virtual void stopVelocityX();
+	virtual void stopVelocityY();
 
 	virtual void update(const float& dt);
-	virtual void render(sf::RenderTarget* target);
+	virtual void render(sf::RenderTarget& target) = 0;
 };
  
 #endif //ENTITY_H

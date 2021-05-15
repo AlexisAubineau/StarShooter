@@ -172,9 +172,10 @@
     <ClCompile Include="MovementComponent.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="ProjectileComponent.cpp" />
-    <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SettingsState.cpp" />
     <ClCompile Include="State.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="Tilemap.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
@@ -198,9 +199,10 @@
     <ClInclude Include="MovementComponent.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="ProjectileComponent.h" />
-    <ClInclude Include="Scene.h" />
     <ClInclude Include="SettingsState.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="Tilemap.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-MovementComponent::MovementComponent(sf::Sprite& sprite, 
-                                     float maxVelocity, float acceleration, float deceleration)
+MovementComponent::MovementComponent(sf::Sprite& sprite, float maxVelocity, float acceleration, float deceleration)
 	: sprite(sprite),
 	maxVelocity(maxVelocity), acceleration(acceleration), deceleration(deceleration)
 {
@@ -12,38 +11,106 @@ MovementComponent::MovementComponent(sf::Sprite& sprite,
 
 MovementComponent::~MovementComponent()
 {
-
+	
 }
 
-//Accesors
-const sf::Vector2f& MovementComponent::getVelocity() const
+const float& MovementComponent::getMaxVelocity() const
+{
+	return maxVelocity;
+}
+
+const sf::Vector2f& MovementComponent::getVelocity()
 {
 	return velocity;
 }
 
 //Functions
-void MovementComponent::move(const float dir_x, const float dir_y, const float&  dt)
+const bool MovementComponent::getState(const short unsigned state) const
 {
-	/* Accelerate a sprite until ir reaches the maxVelocity */
+	switch (state)
+	{
+	case IDLE:
+
+		if (velocity.x == 0.f && velocity.y == 0.f)
+			return true;
+
+		break;
+
+	case MOVING:
+
+		if (velocity.x != 0.f || velocity.y != 0.f)
+			return true;
+
+		break;
+
+	case MOVING_LEFT:
+
+		if (velocity.x < 0.f)
+			return true;
+
+		break;
+
+	case MOVING_RIGHT:
+
+		if (velocity.x > 0.f)
+			return true;
+
+		break;
+
+	case MOVING_UP:
+
+		if (velocity.y < 0.f)
+			return true;
+
+		break;
+
+	case MOVING_DOWN:
+
+		if (velocity.y > 0.f)
+			return true;
+
+		break;
+	}
+
+	return false;
+}
+
+void MovementComponent::stopVelocity()
+{
+	/* Reset Velocity */
+
+	velocity.x = 0;
+	velocity.y = 0;
+}
+
+void MovementComponent::stopVelocityX()
+{
+	velocity.x = 0;
+}
+
+void MovementComponent::stopVelocityY()
+{
+	velocity.y = 0;
+}
+
+void MovementComponent::move(const float dir_x, const float dir_y, const float& dt)
+{
+	/* Accelerating a sprite until it reaches the max velocity. */
 
 	velocity.x += acceleration * dir_x;
 	velocity.y += acceleration * dir_y;
-
-	m_dir_x = dir_x;
-	m_dir_y = dir_y;
 }
-
 
 void MovementComponent::update(const float& dt)
 {
 	/*
-		Decelerates the sprite and controls the maximum velocity.
-		Move the sprite.
+	Decelerates the sprite and controls the maximum velocity.
+	Moves the sprite.
 	*/
-	
-	if (velocity.x > 0.f) //Check for positive x 
+
+	if (velocity.x > 0.f) //Check for positive x
 	{
-		//Max Velocity check 
+		//Max velocity check
 		if (velocity.x > maxVelocity)
 			velocity.x = maxVelocity;
 
@@ -52,20 +119,21 @@ void MovementComponent::update(const float& dt)
 		if (velocity.x < 0.f)
 			velocity.x = 0.f;
 	}
-	else if (velocity.x < 0.f) //Check for negative x 
+	else if (velocity.x < 0.f) //Check for negative x
 	{
 		//Max velocity check
 		if (velocity.x < -maxVelocity)
 			velocity.x = -maxVelocity;
-		
+
 		//Deceleration
 		velocity.x += deceleration;
 		if (velocity.x > 0.f)
 			velocity.x = 0.f;
 	}
-	if (velocity.y > 0.f) //Check for positive y 
+
+	if (velocity.y > 0.f) //Check for positive y
 	{
-		//Max Velocity check
+		//Max velocity check
 		if (velocity.y > maxVelocity)
 			velocity.y = maxVelocity;
 
@@ -74,7 +142,7 @@ void MovementComponent::update(const float& dt)
 		if (velocity.y < 0.f)
 			velocity.y = 0.f;
 	}
-	else if (velocity.y < 0.f) //Check for negative y 
+	else if (velocity.y < 0.f) //Check for negative y
 	{
 		//Max velocity check
 		if (velocity.y < -maxVelocity)
@@ -85,51 +153,8 @@ void MovementComponent::update(const float& dt)
 		if (velocity.y > 0.f)
 			velocity.y = 0.f;
 	}
-	
+
 	//Final move
 	sprite.move(velocity * dt); //Uses velocity
-}
-
-void MovementComponent::checkLocationAllowed(sf::RenderWindow* m_window, sf::Sprite m_sprite)
-{
-	auto sprite_location = m_sprite.getPosition();
-
-	float sprite_location_x = sprite_location.x;
-	float sprite_location_y = sprite_location.y;
-
-
-	if (sprite_location_y < 0 && m_dir_y < 0) // North
-	{
-		velocity = sf::Vector2f(0, 0);
-		m_dir_x = 0;
-		m_dir_y = 0;
-		locationAllowed = false;
-	}
-	else if (sprite_location_x < 0 && m_dir_x < 0) // West
-	{
-		velocity = sf::Vector2f(0, 0);
-		m_dir_x = 0;
-		m_dir_y = 0;
-		locationAllowed = false;
-	}
-	else if (sprite_location_y + m_sprite.getLocalBounds().height > m_window->getSize().y && m_dir_y > 0) // South
-	{
-		velocity = sf::Vector2f(0, 0);
-		m_dir_x = 0;
-		m_dir_y = 0;
-		locationAllowed = false;
-	}
-	else if (sprite_location_x + m_sprite.getLocalBounds().width > m_window->getSize().x && m_dir_x > 0) // East
-	{
-		velocity = sf::Vector2f(0, 0);
-		m_dir_x = 0;
-		m_dir_y = 0;
-		locationAllowed = false;
-	}
-	else
-	{
-		locationAllowed = true;
-	}
-	//std::cout << "m_dir_x: " << m_dir_x << ", m_dir_y: " << m_dir_y << std::endl;
 }
  

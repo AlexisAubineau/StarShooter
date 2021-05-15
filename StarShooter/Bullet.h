@@ -28,7 +28,7 @@ public:
 	//Functions
 	virtual void Movement(const float& dt);
 	virtual void update(const float& dt, std::string m_animationKey);
-	virtual void render(sf::RenderTarget* target);
+	virtual void render(sf::RenderTarget& target);
 
 	void initTexture(std::string m_textureName, std::string m_pathname);
 	void setAnimation(std::string m_animationKey,

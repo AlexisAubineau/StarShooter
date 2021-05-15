@@ -57,8 +57,8 @@ void Bullet::update(const float& dt, std::string m_animationKey)
 
 }
 
-void Bullet::render(sf::RenderTarget* target)
+void Bullet::render(sf::RenderTarget& target)
 {
-	hitboxComponent->render(target);
-	target->draw(component->sprite);
+	hitboxComponent->render(&target);
+	target.draw(component->sprite);
 }

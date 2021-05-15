@@ -32,7 +32,7 @@ public:
 	void attack();
 
 	virtual void update(const float& dt, std::string m_animationKey);
-	virtual void render(sf::RenderTarget* target);
+	virtual void render(sf::RenderTarget& target);
 	
 	//Initalizers
 	void initComponents();

@@ -53,7 +53,7 @@ public:
 	void spawnEnemy(float x, float y);
 	void setEnemyTexture(std::string texturename, std::string texturePathName);
 	void update(const float& dt);
-	void render(sf::RenderTarget* target);
+	void render(sf::RenderTarget& target);
 	
 };
 

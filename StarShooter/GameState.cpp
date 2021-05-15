@@ -1,6 +1,20 @@
 #include "GameState.h"
 
 //Initializer Functions
+void GameState::initDeferredRender()
+{
+	renderTexture.create(stateData->gfxSettings->resolution.width, stateData->gfxSettings->resolution.height);
+	
+	renderSprite.setTexture(renderTexture.getTexture());
+	renderSprite.setTextureRect(sf::IntRect(0, 0, stateData->gfxSettings->resolution.width, stateData->gfxSettings->resolution.height));
+}
+
+void GameState::initView()
+{
+	view.setSize(sf::Vector2f(static_cast<float>(stateData->gfxSettings->resolution.width), static_cast<float>(stateData->gfxSettings->resolution.height)));
+	view.setCenter(static_cast<float>(stateData->gfxSettings->resolution.width) / 2.f, static_cast<float>(stateData->gfxSettings->resolution.height) / 2.f);
+}
+
 void GameState::initKeybinds()
 {
 	std::ifstream ifs(config->gameStateKeybindingPath);
@@ -20,7 +34,7 @@ void GameState::initTextures(){}
 
 void GameState::initPlayers()
 {
-	player = new Player(20, 540);
+	player = new Player(100, 540);
 }
 
 void GameState::initEnemies(sf::RenderWindow* m_window)
@@ -52,22 +66,37 @@ void GameState::initFonts()
 		std::cout << "ERROR::MAINMENUSTATE COULD'NT LOAD FONT" << std::endl;
 }
 
+void GameState::initGUI()
+{
+	player_gui = new PlayerGUI(player);
+}
+
 void GameState::initPauseMenu()
 {
 	pause_menu = new PauseMenu(*window, font);
 	pause_menu->addButton("EXIT_STATE", 800.f, "QUIT");
 }
 
-//Constructors / Destructors
-GameState::GameState(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
-	: State(window, supportedKeys, states)
+void GameState::initTilemap()
 {
+	tilemap = new Tilemap(stateData->gridSize, 10, 10, config->TileSheetScene);
+	tilemap->loadFromFile(config->tilemapSave);
+}
+
+//Constructors / Destructors
+GameState::GameState(StateData* state_data)
+	: State(state_data)
+{
+	initDeferredRender();
+	initView();
 	initKeybinds();
 	initTextures();
 	initPlayers();
 	initEnemies(window);
 	initFonts();
+	initGUI();
 	initPauseMenu();
+	initTilemap();
 }
 
 GameState::~GameState()
@@ -75,6 +104,15 @@ GameState::~GameState()
 	delete player;
 	delete EnemyType1Spawner;
 	delete pause_menu;
+	delete tilemap;
+	delete player_gui;
+}
+
+//Functions
+
+void GameState::updateView(const float& dt)
+{
+	view.setCenter(std::floor(player->getPosition().x), std::floor(player->getPosition().y));
 }
 
 void GameState::updateInput(const float& dt)
@@ -92,9 +130,15 @@ void GameState::updatePauseMenuButtons()
 		endState();
 }
 
+void GameState::updateTileMap(const float& dt)
+{
+	tilemap->update();
+	tilemap->updateCollision(player, dt);
+}
+
 void GameState::update(const float& dt)
 {
-	update_mouse_position();
+	update_mouse_position(&view);
 	update_keytime(dt);
 	updateInput(dt);
 
@@ -103,13 +147,16 @@ void GameState::update(const float& dt)
 	player->window = window;
 	
 	if (!paused) // Resume update
-	{	
+	{
 		player->update(dt);
+		updateView(dt);
 		EnemyType1Spawner->update(dt);
+		player_gui->update(dt);
+		updateTileMap(dt);
 	}
 	else // Pause update
 	{
-		pause_menu->update(mousePosView);
+		pause_menu->update(mousePosWindow);
 		updatePauseMenuButtons();
 	}
 }
@@ -118,11 +165,29 @@ void GameState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = window;
-	player->render(target);
-	EnemyType1Spawner->render(target);
 
+	//Buffered Render
+	renderTexture.clear();
+	
+	renderTexture.setView(view);
+	
+	tilemap->render(renderTexture, false);
+	
+	player->render(renderTexture);
+	
+	EnemyType1Spawner->render(renderTexture);
+
+	
 	if (paused) // Pause menu render
 	{
-		pause_menu->render(*target);
+		renderTexture.setView(renderTexture.getDefaultView());
+		pause_menu->render(renderTexture);
 	}
+	renderTexture.setView(renderTexture.getDefaultView());
+	player_gui->render(renderTexture);
+
+	//Final render
+	renderTexture.display();
+	//renderSprite.setTexture(renderTexture.getTexture());
+	target->draw(renderSprite);
 }

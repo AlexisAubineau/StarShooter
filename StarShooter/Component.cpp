@@ -43,6 +43,7 @@ HitboxComponent* Component::createHitboxComponent(sf::Sprite& sprite, const floa
 	auto* const hitboxComponent = new HitboxComponent(sprite, offset_x, offset_y, width, height, isDebug);
 	return hitboxComponent;
 }
+
 EnemySpawnerComponent* Component::createEnemySpawnerComponent(std::string textureName, std::string animationKey,
 	std::string texturePathName, float timer, int startFrameX, int startFrameY, int frameX, int frameY, int width,
 	int height, float velocity, float damage, float life, float accel)

@@ -13,7 +13,6 @@ private:
 	//Variables
 	float shoot_delay = .5f;
 	
-	PlayerGUI* player_gui;
 	sf::Vector2f player_location;
 
 	//Initializer functions
@@ -44,8 +43,8 @@ public:
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);
 	void attack();
-	virtual void update(const float& dt);
-	virtual void render(sf::RenderTarget* target);
+	void update(const float& dt);
+	void render(sf::RenderTarget& target);
 };
 
 #endif

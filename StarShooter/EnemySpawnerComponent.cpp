@@ -60,7 +60,7 @@ void EnemySpawnerComponent::update(const float& dt)
 	}
 }
 
-void EnemySpawnerComponent::render(sf::RenderTarget* target)
+void EnemySpawnerComponent::render(sf::RenderTarget& target)
 {
 	for (EnemyMaster* element : m_EnemyList)
 	{

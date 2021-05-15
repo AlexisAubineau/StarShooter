@@ -2,17 +2,18 @@
 
 #include <iostream>
 
-State::State(sf::RenderWindow* window, std::map<std::string, int>* supportedKeys, std::stack<State*>* states)
+State::State(StateData* state_data)
 {
-	this->window = window;
-	this->supportedKeys = supportedKeys;
-	this->states = states;
+	stateData = state_data;
+	window = state_data->window;
+	supportedKeys = state_data->supportedKeys;
+	states = state_data->states;
 	quit = false;
 	paused = false;
 	keytime = 0.f;
 	keytimeMax = 10.f;
-	ratio = window->getSize().x / window->getSize().y;
-	std::cout << window->getSize().x * ratio << std::endl;
+	ratio = static_cast<float>(window->getSize().x) / static_cast<float>(window->getSize().y);
+	gridSize = state_data->gridSize;
 }
 
 State::~State()
@@ -52,16 +53,26 @@ void State::resumeState()
 	paused = false;
 }
 
-void State::update_mouse_position()
+void State::update_mouse_position(sf::View* view)
 {
 	mousePosScreen = sf::Mouse::getPosition();
 	mousePosWindow = sf::Mouse::getPosition(*window);
+
+	if(view)
+		window->setView(*view);
+	
 	mousePosView = window->mapPixelToCoords(sf::Mouse::getPosition(*window));
+	mousePosGrid = 
+		sf::Vector2u(
+			static_cast<unsigned>(mousePosView.x) / static_cast<unsigned>(gridSize),
+			static_cast<unsigned>(mousePosView.y) / static_cast<unsigned>(gridSize)
+		);
+
+	window->setView(window->getDefaultView());
 }
 
 void State::update_keytime(const float& dt)
 {
-	std::cout << keytime << std::endl;
 	if (keytime < keytimeMax)
 		keytime += 50.f * dt;
 }

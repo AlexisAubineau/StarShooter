@@ -31,6 +31,9 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{36cacd06-ee7e-470a-8873-6db34356613b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{44fb76f5-921f-49d4-9c7b-18140f58888f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,9 +96,6 @@
     <ClCompile Include="PlayerGUI.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>GUI</Filter>
-    </ClCompile>
     <ClCompile Include="Gui.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
@@ -104,6 +104,12 @@
     </ClCompile>
     <ClCompile Include="EditorSate.cpp">
       <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Tilemap.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -152,9 +158,6 @@
     <ClInclude Include="InputComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Ressources</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyMaster.h">
       <Filter>Entities</Filter>
     </ClInclude>
@@ -178,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="EditorSate.h">
       <Filter>States</Filter>
+    </ClInclude>
+    <ClInclude Include="Tilemap.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
