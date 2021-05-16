@@ -30,6 +30,15 @@ EnemySpawnerComponent::~EnemySpawnerComponent()
 	m_EnemyList.clear();
 }
 
+std::list<EnemyMaster*> EnemySpawnerComponent::getEnemiesList()
+{
+	if(m_EnemyList.size() != 0)
+	{
+		return m_EnemyList;
+	}
+	return std::list<EnemyMaster*>{};
+}
+
 void EnemySpawnerComponent::spawnEnemy(float x, float y)
 {
 	EnemyMaster* enemy = new EnemyMaster(x,y);

@@ -2,6 +2,8 @@
 #define BULLET_H
 #include "Entity.h"
 
+class Entity;
+
 class Bullet :
 	public Entity
 {

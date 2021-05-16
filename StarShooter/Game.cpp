@@ -48,10 +48,6 @@ void Game::initKeys()
         }
     }
     ifs.close();
-
-    //DEBUG REMOVE LATER !!
-    for (auto i : supportedKeys)
-        std::cout << i.first << " " << i.second << "\n";
 }
 
 void Game::initStateData()

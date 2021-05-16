@@ -1,5 +1,6 @@
 #ifndef ENEMYSPAWNERCOMPONENT_H
 #define ENEMYSPAWNERCOMPONENT_H
+
 #include <list>
 #include <string>
 #include <SFML/Graphics/RenderTarget.hpp>
@@ -50,8 +51,12 @@ public:
 		float accel);
 	~EnemySpawnerComponent();
 
+	//Accessors
+	std::list<EnemyMaster*> getEnemiesList();
+
 	void spawnEnemy(float x, float y);
 	void setEnemyTexture(std::string texturename, std::string texturePathName);
+	
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);
 	

@@ -2,6 +2,8 @@
 #define ENEMYMASTER_H
 #include "Entity.h"
 
+class Entity;
+
 class EnemyMaster :
 	public Entity
 {

@@ -21,8 +21,6 @@ void Tilemap::clear()
 		map[x].clear();
 	}
 	map.clear();
-
-	//std::cout << map.size() << "\n";
 }
 
 Tilemap::Tilemap(float gridSize, int width, int height, std::string texture_file)
@@ -60,7 +58,7 @@ Tilemap::Tilemap(float gridSize, int width, int height, std::string texture_file
 		std::cout << "ERROR::Tilemap::FAILED TO LOAD TILETEXTURESHEET::FILENAME: " << texture_file << "\n";
 
 	collisionBox.setSize(sf::Vector2f(gridSize, gridSize));
-	
+
 }
 
 Tilemap::~Tilemap()
@@ -151,7 +149,7 @@ void Tilemap::saveToFile(const std::string file_name)
 					if (map[x][y][z])
 						out_file << x << " " << y << " " << z << " " <<
 						map[x][y][z]->getAsString()
-						<< " "; //MAKE SURE THIS LAST SPACE IS NOT SAVED!!!!
+						<< " ";
 				}
 			}
 		}
@@ -285,7 +283,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 		toY = 0;
 	else if (toY > static_cast<int>(maxSizeWorldGrid.y))
 		toY = maxSizeWorldGrid.y;
-	
+
 	for (int x = fromX; x < toX; x++)
 	{
 		for (int y = fromY; y < toY; ++y)
@@ -296,10 +294,12 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 				sf::FloatRect nextPositionBounds = entity->getNextPositionBounds(dt);
 				sf::FloatRect wallBounds = map[x][y][layer]->getGlobalBounds();
 
+				colliding = true;
+
 				if (map[x][y][layer]->getCollision() && map[x][y][layer]->intersects(nextPositionBounds))
 				{
-					std::cout << "Collision" << std::endl;
 					
+
 					//Bottom collision
 					if (entityBounds.top < wallBounds.top
 						&& entityBounds.top + entityBounds.height < wallBounds.top + wallBounds.height
@@ -345,13 +345,17 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					}
 				}
 			}
+			else
+			{
+				colliding = false;
+			}
 		}
 	}
 }
 
 void Tilemap::CollisionTileDebug(bool debug)
 {
-	if(debug)
+	if (debug)
 	{
 		collisionBox.setFillColor(sf::Color(255, 0, 0, 50));
 		collisionBox.setOutlineColor(sf::Color::Red);

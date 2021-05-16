@@ -1,4 +1,7 @@
 #include "ProjectileComponent.h"
+
+#include <iostream>
+
 #include "Bullet.h"
 
 ProjectileComponent::ProjectileComponent(std::string textureName, std::string animationKey, std::string texturePathName,float timer,
@@ -21,8 +24,24 @@ ProjectileComponent::ProjectileComponent(std::string textureName, std::string an
 
 ProjectileComponent::~ProjectileComponent()
 {
+	for (Bullet* element : m_BulletList)
+	{
+		delete element;
+	}
+	m_BulletList.clear();
 }
 
+//Accessors
+std::list<Bullet*> ProjectileComponent::getBulletList()
+{
+	if (m_BulletList.size() != 0)
+	{
+		return m_BulletList;
+	}
+	return std::list<Bullet*>{};
+}
+
+//Functions
 void ProjectileComponent::FireProjectile(float x, float y)
 {
 	if (m_time_interval > m_delay)
@@ -47,8 +66,6 @@ void ProjectileComponent::update(const float& dt, sf::RenderWindow* window)
 		{
 			if (*it != nullptr)
 				(*it)->update(dt, m_animationKey);
-			
-			checkLocationAllowed(window, it);
 			
 			if (out_of_bounds == true)
 			{
@@ -77,22 +94,4 @@ void ProjectileComponent::render(sf::RenderTarget& target)
 	{
 		element->render(target);
 	}
-}
-
-bool ProjectileComponent::checkLocationAllowed(sf::RenderWindow* m_window, std::list<Bullet*>::iterator it)
-{
-	auto bullet_location = (*it)->getPosition();
-
-	float bullet_location_x = bullet_location.x;
-	float bullet_location_y = bullet_location.y;
-
-	if (bullet_location_x < 0)
-		return out_of_bounds = true;
-	if (bullet_location_y < 0)
-		return out_of_bounds = true;
-	if (bullet_location_x > m_window->getSize().x)
-		return out_of_bounds = true;
-	if (bullet_location_y > m_window->getSize().y)
-		return out_of_bounds = true;
-	return out_of_bounds = false;
 }

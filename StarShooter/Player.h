@@ -6,6 +6,8 @@
 #include "PlayerGUI.h"
 #include "Entity.h"
 
+class Tilemap;
+
 class Player :
 	public Entity
 {
@@ -43,6 +45,7 @@ public:
 	//Functions
 	void move(const float dir_x, const float dir_y, const float& dt);
 	void attack();
+	void updateProjectileCollision(Tilemap* tilemap, const float& dt);
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);
 };

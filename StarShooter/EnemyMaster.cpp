@@ -1,5 +1,4 @@
 #include "EnemyMaster.h"
-
 #include <iostream>
 
 void EnemyMaster::initComponents()
@@ -26,6 +25,8 @@ EnemyMaster::EnemyMaster(float m_posx, float m_posy)
 {
 	setPosition(m_posx, m_posy);
 	initComponents();
+	setHitbox(hitboxComponent);
+	setMovement(movementComponent);
 }
 
 EnemyMaster::~EnemyMaster()

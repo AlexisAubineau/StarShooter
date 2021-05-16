@@ -1,5 +1,4 @@
 #include "Bullet.h"
-
 #include <iostream>
 
 void Bullet::initComponents()
@@ -26,6 +25,8 @@ Bullet::Bullet(float m_posx, float m_posy)
 {
 	setPosition(m_posx, m_posy);
 	initComponents();
+	setHitbox(hitboxComponent);
+	setMovement(movementComponent);
 }
 
 Bullet::~Bullet()

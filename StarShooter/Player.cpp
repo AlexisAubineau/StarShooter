@@ -1,5 +1,9 @@
 #include "Player.h"
 
+
+#include "Bullet.h"
+#include "Tilemap.h"
+
 //Initializer functions
 void Player::initVariables()
 {
@@ -9,14 +13,14 @@ void Player::initVariables()
 void Player::initComponents()
 {
 	// Movement Component Player
-	movementComponent = component->createMovementComponent(800.f, 15.f, 15.f);
+	movementComponent = component->createMovementComponent(500.f, 1500.f, 500.f);
 
 	// Animation Player
 	animationComponent = component->createAnimationComponent(component->textures["PLAYER_SHEET"]);
 	animationComponent->addAnimation("SHIP_IDLE", 10.f, 0, 0, 4, 0, 120, 90);
 
 	// Component Projectile Player 
-	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", config->ProjectilePath, 10.f, 0, 0, 4, 0, 120, 90, 0.0025f, 10.f, shoot_delay);
+	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", config->ProjectilePath, 10.f, 0, 0, 4, 0, 120, 90, 2000.f, 10.f, shoot_delay);
 
 	// Input for player
 	inputComponent = component->createInputComponent();
@@ -68,6 +72,17 @@ void Player::attack()
 		projectileComponent->FireProjectile(getPosition().x, getPosition().y);
 	}
 	
+}
+
+void Player::updateProjectileCollision(Tilemap* tilemap, const float& dt)
+{
+	if (projectileComponent->getBulletList().size() != 0)
+	{
+		for (Bullet* element: projectileComponent->getBulletList())
+		{
+			tilemap->updateCollision(element, dt);
+		}
+	}
 }
 
 // Functions

@@ -8,7 +8,6 @@
 #include "Tilemap.h"
 
 class Entity;
-class Player;
 
 class GameState :
 	public State

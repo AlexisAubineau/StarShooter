@@ -1,4 +1,5 @@
 #include "GameState.h"
+#include "EnemyMaster.h"
 
 //Initializer Functions
 void GameState::initDeferredRender()
@@ -54,10 +55,10 @@ void GameState::initEnemies(sf::RenderWindow* m_window)
 		5.f,
 		2.0f);
 	EnemyType1Spawner->window = m_window;
-	EnemyType1Spawner->spawnEnemy(980, 540);
+	EnemyType1Spawner->spawnEnemy(980, 600);
 	
-	/*EnemyType1Spawner->spawnEnemy(840,320);
-	EnemyType1Spawner->spawnEnemy(980,610);*/
+	EnemyType1Spawner->spawnEnemy(840,320);
+	EnemyType1Spawner->spawnEnemy(980,610);
 }
 
 void GameState::initFonts()
@@ -131,9 +132,26 @@ void GameState::updatePauseMenuButtons()
 }
 
 void GameState::updateTileMap(const float& dt)
-{
+{	
 	tilemap->update();
+
+	//Update Collision Player
 	tilemap->updateCollision(player, dt);
+
+	//Update Collision for all enemies with colliding tiles
+	if (EnemyType1Spawner->getEnemiesList().size() != 0)
+	{
+		for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
+		{
+			tilemap->updateCollision(element, dt);
+		}
+	}
+
+	//Update Collision Projectile Player
+	player->updateProjectileCollision(tilemap, dt);
+
+	//Update Collision Projectile Enemies
+	
 }
 
 void GameState::update(const float& dt)
