@@ -35,8 +35,6 @@ public:
 	virtual ~Player();
 
 	//Variables
-	float max_life = 200.f;
-	float current_life = 150.f;
 	
 	std::map<std::string, int> keybinds;
 	std::map<std::string, int>* supportedKeys;

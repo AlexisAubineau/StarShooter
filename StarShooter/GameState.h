@@ -17,6 +17,8 @@ private:
 	sf::View view;
 	sf::RenderTexture renderTexture;
 	sf::Sprite renderSprite;
+	sf::Texture backgroundTexture;
+	sf::RectangleShape background;
 	
 	Player* player;
 	EnemySpawnerComponent* EnemyType1Spawner;
@@ -30,6 +32,7 @@ private:
 	//Functions
 	void initDeferredRender();
 	void initView();
+	void initBackground();
 	void initKeybinds();
 	void initTextures();
 	void initPlayers();

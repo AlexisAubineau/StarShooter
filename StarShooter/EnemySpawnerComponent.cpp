@@ -1,4 +1,7 @@
 #include "EnemySpawnerComponent.h"
+
+#include <iostream>
+
 #include "EnemyMaster.h"
 
 EnemySpawnerComponent::EnemySpawnerComponent(std::string textureName, std::string animationKey,
@@ -58,6 +61,25 @@ void EnemySpawnerComponent::setEnemyTexture(std::string texturename, std::string
 	for (EnemyMaster* element : m_EnemyList)
 	{
 		element->initTexture(m_textureName,m_texturePathName);
+	}
+}
+
+void EnemySpawnerComponent::deleteEnemy(bool colliding, EnemyMaster* enemy)
+{
+	if(colliding)
+	{
+		auto it = m_EnemyList.begin();
+		while (it != m_EnemyList.end())
+		{
+			if((*it) == enemy)
+			{
+				it = m_EnemyList.erase(it);
+			}
+			else
+			{
+				++it;
+			}
+		}
 	}
 }
 

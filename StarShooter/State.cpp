@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "GameState.h"
+
 State::State(StateData* state_data)
 {
 	stateData = state_data;

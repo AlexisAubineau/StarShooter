@@ -7,7 +7,9 @@
 //Initializer functions
 void Player::initVariables()
 {
-	
+	max_life = 200.f;
+	current_life = max_life;
+	damage = 1.f;
 }
 
 void Player::initComponents()
@@ -43,8 +45,6 @@ Player::Player(float x, float y)
 	initTexture();
 	initComponents();
 	setPosition(x, y);
-	maxLife(max_life);
-	Life(current_life);
 	setHitbox(hitboxComponent);
 	setMovement(movementComponent);
 }

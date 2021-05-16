@@ -22,6 +22,10 @@ public:
  	
 	Config* config = new Config;
 
+	float max_life;
+	float current_life;
+	float damage;
+
 
 	//Component functions
 	void setTexture(sf::Texture& texture);
@@ -33,14 +37,18 @@ public:
 	virtual const sf::Vector2i getGridPosition(const int gridSizeI) const;
 	virtual const sf::FloatRect getGlobalBounds() const;
 	virtual const sf::FloatRect& getNextPositionBounds(const float& dt) const;
+	virtual float GetLife();
+
+ 	//Modifiers
+	virtual float MaxLife(float m_max_life);
+	virtual float CurrentLife(float m_current_life);
  	
 	//Functions
 	virtual void setPosition(const float x, const float y);
-	float Life(float life);
-	float maxLife(float maxLife);
 	virtual void stopVelocity();
 	virtual void stopVelocityX();
 	virtual void stopVelocityY();
+	virtual float Damage();
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget& target) = 0;

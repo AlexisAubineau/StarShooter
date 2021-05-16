@@ -27,9 +27,9 @@ Tilemap::Tilemap(float gridSize, int width, int height, std::string texture_file
 {
 	gridSizeF = gridSize;
 	gridSizeI = static_cast<unsigned>(gridSizeF);
-	maxSizeWorldGrid.x = width;
+	maxSizeWorldGrid.x = width * 2;
 	maxSizeWorldGrid.y = height;
-	maxSizeWorld.x = static_cast<float>(width) * gridSize;
+	maxSizeWorld.x = static_cast<float>(width) * gridSize * 2;
 	maxSizeWorld.y = static_cast<float>(height) * gridSize;
 	layers = 1;
 	textureFile = texture_file;
@@ -294,11 +294,9 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 				sf::FloatRect nextPositionBounds = entity->getNextPositionBounds(dt);
 				sf::FloatRect wallBounds = map[x][y][layer]->getGlobalBounds();
 
-				colliding = true;
-
 				if (map[x][y][layer]->getCollision() && map[x][y][layer]->intersects(nextPositionBounds))
 				{
-					
+
 
 					//Bottom collision
 					if (entityBounds.top < wallBounds.top
@@ -309,6 +307,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityY();
 						entity->setPosition(entityBounds.left, wallBounds.top - entityBounds.height);
+						entity->Damage();
 					}
 
 					//Top collision
@@ -320,6 +319,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityY();
 						entity->setPosition(entityBounds.left, wallBounds.top + wallBounds.height);
+						entity->Damage();
 					}
 
 					//Right collision
@@ -331,6 +331,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityX();
 						entity->setPosition(wallBounds.left - entityBounds.width, entityBounds.top);
+						entity->Damage();
 					}
 
 					//Left collision
@@ -342,12 +343,10 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityX();
 						entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
+						entity->Damage();
 					}
+					//std::cout << colliding << std::endl;
 				}
-			}
-			else
-			{
-				colliding = false;
 			}
 		}
 	}

@@ -56,6 +56,8 @@ public:
 
 	void spawnEnemy(float x, float y);
 	void setEnemyTexture(std::string texturename, std::string texturePathName);
+
+	void deleteEnemy(bool colliding, EnemyMaster* enemy);
 	
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);

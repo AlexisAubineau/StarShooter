@@ -143,7 +143,12 @@ void GameState::updateTileMap(const float& dt)
 	{
 		for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
 		{
-			tilemap->updateCollision(element, dt);
+			if (element != nullptr)
+				tilemap->updateCollision(element, dt);
+			/*if (tilemap->colliding)
+			{
+				EnemyType1Spawner->deleteEnemy(tilemap->colliding, element);
+			}*/
 		}
 	}
 
@@ -171,6 +176,12 @@ void GameState::update(const float& dt)
 		EnemyType1Spawner->update(dt);
 		player_gui->update(dt);
 		updateTileMap(dt);
+		if(player->current_life == 0)
+		{
+			endState();
+			player->current_life = player->max_life;
+			states->push(new GameState(stateData));
+		}
 	}
 	else // Pause update
 	{
@@ -183,7 +194,7 @@ void GameState::render(sf::RenderTarget* target)
 {
 	if (!target)
 		target = window;
-
+	
 	//Buffered Render
 	renderTexture.clear();
 	
@@ -206,6 +217,7 @@ void GameState::render(sf::RenderTarget* target)
 
 	//Final render
 	renderTexture.display();
-	//renderSprite.setTexture(renderTexture.getTexture());
+	renderSprite.setTexture(renderTexture.getTexture());
+	
 	target->draw(renderSprite);
 }

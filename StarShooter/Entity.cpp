@@ -1,5 +1,7 @@
 #include "Entity.h"
 
+#include <iostream>
+
 Entity::Entity()
 {
 	window = nullptr;
@@ -67,6 +69,25 @@ const sf::FloatRect& Entity::getNextPositionBounds(const float& dt) const
 	return sf::Rect<float>(-1.f, -1.f, -1.f, -1.f);
 }
 
+float Entity::GetLife()
+{
+	return current_life;
+}
+
+//Modifiers
+
+float Entity::MaxLife(float m_max_life)
+{
+	m_max_life = max_life;
+	return m_max_life;
+}
+
+float Entity::CurrentLife(float m_current_life)
+{
+	m_current_life = current_life;
+	return  m_current_life;
+}
+
 //Functions
 void Entity::setPosition(const float x, const float y)
 {
@@ -74,16 +95,6 @@ void Entity::setPosition(const float x, const float y)
 		hitbox_component->setPosition(x, y);
 	else
 		component->sprite.setPosition(x, y);
-}
-
-float Entity::Life(float life)
-{
-	return life;
-}
-
-float Entity::maxLife(float maxLife)
-{
-	return maxLife;
 }
 
 void Entity::stopVelocity()
@@ -102,6 +113,13 @@ void Entity::stopVelocityY()
 {
 	if (movement_component)
 		movement_component->stopVelocityY();
+}
+
+float Entity::Damage()
+{
+	current_life = current_life - damage;
+	std::cout << current_life << std::endl;
+	return current_life;
 }
 
 void Entity::update(const float& dt)
