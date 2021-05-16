@@ -59,7 +59,7 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
  - Menu (Pause / MainMenu / Settings)
  - Component ( Movement / Input / Hitbox / Animation)
  - Gui
- - Graphics
+ - Graphics ( Window Settings)
 
 ## Difficultés rencontré :
 
