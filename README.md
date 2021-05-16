@@ -60,7 +60,7 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
  - Component ( Movement / Input / Hitbox / Animation)
  - Gui
  - Graphics ( Window Settings)
- - Collision
+ - Collision (Tile)
 
 ## Difficultés rencontré :
 
