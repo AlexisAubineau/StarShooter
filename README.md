@@ -4,7 +4,7 @@
 Projet créé à partir de la SFML 2.5.1, le but de ce projet étais de créer une architecture forte capable de servir de base sur d'autres projets perso et d'évaluer nos compétences acquises en C++ .
 
 L’exécutable du projet est disponible à l'adesse suivante :
-[Lien release Github](https://github.com/AlexisAubineau/Project-Shooter/releases/tag/1.0.0)
+[Lien release Github](https://github.com/AlexisAubineau/StarShooter/releases/tag/0.0.1)
 
 Les sources du projet sont disponible à l'adresse suivante :
 [Lien repo Github](https://github.com/AlexisAubineau/StarShooter)
