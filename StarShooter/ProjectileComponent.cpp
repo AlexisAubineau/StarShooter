@@ -88,6 +88,14 @@ void ProjectileComponent::setProjectileTexture(std::string texturename, std::str
 	}
 }
 
+void ProjectileComponent::SetBulletTags(std::string tag)
+{
+	for (Bullet* element : m_BulletList)
+	{
+		element->setTag(tag);
+	}
+}
+
 void ProjectileComponent::render(sf::RenderTarget& target)
 {
 	for (Bullet* element : m_BulletList)

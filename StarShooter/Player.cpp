@@ -23,12 +23,14 @@ void Player::initComponents()
 
 	// Component Projectile Player 
 	projectileComponent = component->createProjectileComponent("SHIP_PROJECTILE_SHEET", "SHIP_PROJECTILE", config->ProjectilePath, 10.f, 0, 0, 4, 0, 120, 90, 2000.f, 10.f, shoot_delay);
-
+	
+	
 	// Input for player
 	inputComponent = component->createInputComponent();
 
 	// Player Hitbox Component
 	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 10, component->sprite.getGlobalBounds().width, 70, true);
+	hitboxComponent->setTag("Player");
 }
 
 void Player::initTexture()
@@ -69,7 +71,7 @@ void Player::attack()
 {
 	if (projectileComponent)
 	{
-		projectileComponent->FireProjectile(getPosition().x, getPosition().y);
+		projectileComponent->FireProjectile(getPosition().x+60, getPosition().y);
 	}
 	
 }
@@ -88,7 +90,20 @@ void Player::updateProjectileCollision(Tilemap* tilemap, const float& dt)
 void Player::setCollisionEnable(bool state, std::list<Entity*> Entities)
 {
 	hitboxComponent->SetCollisionEnable(state,Entities);
+	for (std::string element : hitbox_component->CollisionTagList)
+	{
+		if (element == "EnemyBullet")
+		{
+			current_life = current_life - 1.0f;
+		}
+	}
 }
+
+ProjectileComponent* Player::getProjectileComp() const
+{
+	return projectileComponent;
+}
+
 
 // Functions
 
@@ -99,6 +114,8 @@ void Player::update(const float& dt)
 	animationComponent->play("SHIP_IDLE", dt);
 	
 	projectileComponent->update(dt, window);
+	
+	projectileComponent->SetBulletTags("PlayerProjectiles");
 	
 	inputComponent->updateInput(dt, this, keybinds, supportedKeys);
 

@@ -39,6 +39,7 @@ public:
 	//Initalizers
 	void initVariables();
 	void initComponents();
+	ProjectileComponent* GetProjectileComp();
 	void initTexture(std::string m_textureName, std::string m_pathname);
 	void setAnimation(std::string m_animationKey,
 		float m_timer,

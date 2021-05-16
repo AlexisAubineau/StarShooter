@@ -14,9 +14,10 @@ private:
 	float offsetX;
 	float offsetY;
 	std::string m_tag;
-	std::list<std::string> CollisionTagList;
+	bool CanDamage;
  
 public:
+	std::list<std::string> CollisionTagList;
 	HitboxComponent(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height, bool isDebug);
 	~HitboxComponent();
 
@@ -30,6 +31,7 @@ public:
 	void setPosition(const float x, const float y);
 	void SetCollisionEnable(bool state, std::list<Entity*> EntityList);
 	void setTag(std::string tag);
+	std::string GetTag();
 	
 	// Functions
 	bool Intersets(const sf::FloatRect& frect);

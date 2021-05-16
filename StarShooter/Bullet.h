@@ -32,6 +32,9 @@ public:
 	virtual void update(const float& dt, std::string m_animationKey);
 	virtual void render(sf::RenderTarget& target);
 
+	void setTag(std::string tag);
+	std::string GetTag();
+
 	void initTexture(std::string m_textureName, std::string m_pathname);
 	void setAnimation(std::string m_animationKey,
 		float m_timer,

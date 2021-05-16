@@ -45,6 +45,7 @@ public:
 	void attack();
 	void updateProjectileCollision(Tilemap* tilemap, const float& dt);
 	void setCollisionEnable(bool state, std::list<Entity*> Entities);
+	ProjectileComponent* getProjectileComp() const;
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);
 };

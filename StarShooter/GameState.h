@@ -43,6 +43,7 @@ private:
 	void initGUI();
 	void initPauseMenu();
 	void initTilemap();
+	void defineAllCollidableGameObjects();
 
 public:
 	GameState(StateData* state_data);

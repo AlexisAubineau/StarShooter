@@ -84,6 +84,33 @@ void GameState::initTilemap()
 	tilemap->loadFromFile(config->tilemapSave);
 }
 
+void GameState::defineAllCollidableGameObjects()
+{
+	for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
+	{
+		GameObjects.push_back(element);
+	}
+
+	std::list<Bullet*> PlayerBullets = player->getProjectileComp()->m_BulletList;
+
+	for (Bullet* element : PlayerBullets)
+	{
+ 		GameObjects.push_back(reinterpret_cast<Entity*>(element));
+	}
+
+	for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
+	{
+		std::list<Bullet*> EnemyBullets =element->GetProjectileComp()->m_BulletList;
+		for (Bullet* element : EnemyBullets)
+		{
+ 			GameObjects.push_back(reinterpret_cast<Entity*>(element));
+		}
+	}
+
+	
+
+}
+
 //Constructors / Destructors
 GameState::GameState(StateData* state_data)
 	: State(state_data)
@@ -98,11 +125,7 @@ GameState::GameState(StateData* state_data)
 	initGUI();
 	initPauseMenu();
 	initTilemap();
-	
-	for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
-	{
-		GameObjects.push_back(element);
-	}
+	defineAllCollidableGameObjects();
 }
 
 GameState::~GameState()
@@ -165,7 +188,7 @@ void GameState::update(const float& dt)
 	update_mouse_position(&view);
 	update_keytime(dt);
 	updateInput(dt);
-
+	defineAllCollidableGameObjects();
 	player->supportedKeys = supportedKeys;
 	player->keybinds = keybinds;
 	player->window = window;
@@ -173,7 +196,8 @@ void GameState::update(const float& dt)
 	if (!paused) // Resume update
 	{
 		player->update(dt);
-		player->setCollisionEnable(true, GameObjects);
+		//Player Collisions Disabled to avoid Lag.
+		player->setCollisionEnable(false, GameObjects);
 		updateView(dt);
 		EnemyType1Spawner->update(dt);
 		player_gui->update(dt);

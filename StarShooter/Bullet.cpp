@@ -63,3 +63,13 @@ void Bullet::render(sf::RenderTarget& target)
 	hitboxComponent->render(&target);
 	target.draw(component->sprite);
 }
+
+void Bullet::setTag(std::string tag)
+{
+	hitboxComponent->setTag(tag);
+}
+
+std::string Bullet::GetTag()
+{
+	return hitboxComponent->GetTag();
+}

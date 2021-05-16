@@ -67,6 +67,7 @@ void HitboxComponent::SetCollisionEnable(bool state,std::list<Entity*> EntityLis
 				std::cout<< "I'm being touched." << std::endl;
 				CollisionTagList.push_back(CheckColliderInfo(element->GetHitbox()));
 				std::cout << CheckColliderInfo(element->GetHitbox()) << std::endl;
+				element->stopVelocity();
 			}
 		}
 	}
@@ -76,6 +77,11 @@ void HitboxComponent::SetCollisionEnable(bool state,std::list<Entity*> EntityLis
 void HitboxComponent::setTag(std::string tag)
 {
 	m_tag = tag;
+}
+
+std::string HitboxComponent::GetTag()
+{
+	return m_tag;
 }
 
 //Functions

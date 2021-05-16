@@ -54,6 +54,7 @@ public:
 	void FireProjectile(float x, float y);
 	void update(const float& dt, sf::RenderWindow* window);
 	void setProjectileTexture(std::string texturename, std::string texturePathName);
+	void SetBulletTags(std::string tag);
 	void render(sf::RenderTarget& target);
 };
 

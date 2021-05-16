@@ -14,6 +14,11 @@ void EnemyMaster::initComponents()
 	hitboxComponent->setTag("Enemy");
 }
 
+ProjectileComponent* EnemyMaster::GetProjectileComp()
+{
+	return projectileComponent;
+}
+
 void EnemyMaster::initTexture(std::string m_textureName, std::string m_pathname)
 {
 	if (!component->textures[m_textureName].loadFromFile(m_pathname))
@@ -69,6 +74,8 @@ void EnemyMaster::update(const float& dt, std::string m_animationKey)
 	animationComponent->play(m_animationKey, dt);
 	projectileComponent->update(dt, window);
 	hitboxComponent->update();
+
+	projectileComponent->SetBulletTags("EnemyBullets");
 	attack();
 }
 
