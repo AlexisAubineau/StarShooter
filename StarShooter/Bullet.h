@@ -23,7 +23,7 @@ public:
 	virtual ~Bullet();
 
 	//Variables
-	float m_velocity = 100.f;
+	float m_velocity = 1000.f;
 	float m_damage = 1.0f;
 
 

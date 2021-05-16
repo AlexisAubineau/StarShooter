@@ -118,7 +118,6 @@ void Entity::stopVelocityY()
 float Entity::tileDamage()
 {
 	current_life = current_life - tile_damage;
-	std::cout << current_life << std::endl;
 	return current_life;
 }
 
