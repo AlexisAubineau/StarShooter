@@ -6,6 +6,7 @@
 
 State::State(StateData* state_data)
 {
+	//Initializer State
 	stateData = state_data;
 	window = state_data->window;
 	supportedKeys = state_data->supportedKeys;

@@ -182,10 +182,10 @@ void Tilemap::loadFromFile(const std::string file_name)
 		bool collision = false;
 		short type = 0;
 
-		//Basics
+		// Read basic element in tilemap saved
 		in_file >> size.x >> size.y >> gridSize >> m_layers >> texture_file;
 
-		//Tiles
+		// Read Tile element in tilemap saved
 		gridSizeF = static_cast<float>(gridSize);
 		gridSizeI = gridSize;
 		maxSizeWorldGrid.x = size.x;

@@ -14,8 +14,6 @@ Tile::Tile(int grid_x, int grid_y, float gridSizef, sf::Texture& texture, const 
 {
 	shape.setSize(sf::Vector2f(gridSizef, gridSizef));
 	shape.setFillColor(sf::Color::White);
-	//shape.setOutlineThickness(1.f);
-	//shape.setOutlineColor(sf::Color::Black);
 	shape.setPosition(static_cast<float>(grid_x * gridSizef), static_cast<float>(grid_y * gridSizef));
 	shape.setTexture(&texture);
 	shape.setTextureRect(texture_rect);
