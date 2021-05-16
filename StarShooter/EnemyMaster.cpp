@@ -10,7 +10,7 @@ void EnemyMaster::initComponents()
 	projectileComponent = component->createProjectileComponent("ENEMY_PROJECTILE", "SHIP_PROJECTILE",config->EnemyType1Projectile, 10.f, 0, 0, 4, 0, 120, 90, -0.0025f, 10.f, m_shoot_delay);
 
 	// Player Hitbox Component
-	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 0, 80, 60, true);
+	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 0, 80, 60, false);
 	hitboxComponent->setTag("Enemy");
 }
 

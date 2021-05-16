@@ -4,7 +4,7 @@
 void Bullet::initComponents()
 {
 	movementComponent = component->createMovementComponent(m_velocity, m_velocity * 100, -m_velocity * 10);
-	hitboxComponent = component->createHitboxComponent(component->sprite, 40, 30, 90, 30, true);
+	hitboxComponent = component->createHitboxComponent(component->sprite, 40, 30, 90, 30, false);
 }
 
 void Bullet::setAnimation(std::string m_animationKey, float m_timer, int m_startFrameX, int m_startFrameY, int m_frameX, int m_frameY,

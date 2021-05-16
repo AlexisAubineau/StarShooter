@@ -29,7 +29,7 @@ void Player::initComponents()
 	inputComponent = component->createInputComponent();
 
 	// Player Hitbox Component
-	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 10, component->sprite.getGlobalBounds().width, 70, true);
+	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 10, component->sprite.getGlobalBounds().width, 70, false);
 	hitboxComponent->setTag("Player");
 }
 

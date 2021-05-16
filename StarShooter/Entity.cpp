@@ -7,6 +7,8 @@ Entity::Entity()
 	window = nullptr;
 	movement_component = nullptr;
 	hitbox_component = nullptr;
+	max_life = 0.f;
+	current_life = max_life;
 }
 
 Entity::~Entity()
@@ -28,7 +30,7 @@ void Entity::setHitbox(HitboxComponent* hitbox)
 
 HitboxComponent* Entity::GetHitbox()
 {
-	return  hitbox_component;
+	return hitbox_component;
 }
 
 void Entity::setMovement(MovementComponent* movement)

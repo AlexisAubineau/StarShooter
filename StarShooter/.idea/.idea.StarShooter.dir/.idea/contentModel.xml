@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\alexi\AppData\Local\JetBrains\Rider2020.3\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\alexi\AppData\Local\JetBrains\Rider2020.3\resharper-host\Local\Transient\Rider\v203\SolutionCaches\_.19.00" t="ExcludeRecursive" />
+    <e p="C:\Users\alexi\AppData\Roaming\JetBrains\Rider2020.3\scratches" t="IncludeRecursive" />
+    <e p="F:\Code\C++\StarShooter\StarShooter" t="IncludeRecursive">
+      <e p="Animation.cpp" t="Include" />
+      <e p="Animation.h" t="Include" />
+      <e p="AnimationComponent.cpp" t="Include" />
+      <e p="AnimationComponent.h" t="Include" />
+      <e p="Bullet.cpp" t="Include" />
+      <e p="Bullet.h" t="Include" />
+      <e p="Component.cpp" t="Include" />
+      <e p="Component.h" t="Include" />
+      <e p="Config.h" t="Include" />
+      <e p="Debug" t="ExcludeRecursive" />
+      <e p="EditorSate.cpp" t="Include" />
+      <e p="EditorSate.h" t="Include" />
+      <e p="EnemyMaster.cpp" t="Include" />
+      <e p="EnemyMaster.h" t="Include" />
+      <e p="EnemySpawnerComponent.cpp" t="Include" />
+      <e p="EnemySpawnerComponent.h" t="Include" />
+      <e p="Entity.cpp" t="Include" />
+      <e p="Entity.h" t="Include" />
+      <e p="Game.cpp" t="Include" />
+      <e p="Game.h" t="Include" />
+      <e p="GameState.cpp" t="Include" />
+      <e p="GameState.h" t="Include" />
+      <e p="GraphicsSettings.cpp" t="Include" />
+      <e p="GraphicsSettings.h" t="Include" />
+      <e p="Gui.cpp" t="Include" />
+      <e p="Gui.h" t="Include" />
+      <e p="HitboxComponent.cpp" t="Include" />
+      <e p="HitboxComponent.h" t="Include" />
+      <e p="InputComponent.cpp" t="Include" />
+      <e p="InputComponent.h" t="Include" />
+      <e p="main.cpp" t="Include" />
+      <e p="MainMenuState.cpp" t="Include" />
+      <e p="MainMenuState.h" t="Include" />
+      <e p="MovementComponent.cpp" t="Include" />
+      <e p="MovementComponent.h" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="PauseMenu.cpp" t="Include" />
+      <e p="PauseMenu.h" t="Include" />
+      <e p="Player.cpp" t="Include" />
+      <e p="Player.h" t="Include" />
+      <e p="PlayerGUI.cpp" t="Include" />
+      <e p="PlayerGUI.h" t="Include" />
+      <e p="ProjectileComponent.cpp" t="Include" />
+      <e p="ProjectileComponent.h" t="Include" />
+      <e p="SettingsState.cpp" t="Include" />
+      <e p="SettingsState.h" t="Include" />
+      <e p="StarShooter.vcxproj" t="IncludeRecursive" />
+      <e p="State.cpp" t="Include" />
+      <e p="State.h" t="Include" />
+      <e p="Tile.cpp" t="Include" />
+      <e p="Tile.h" t="Include" />
+      <e p="Tilemap.cpp" t="Include" />
+      <e p="Tilemap.h" t="Include" />
+    </e>
+  </component>
+</project>
