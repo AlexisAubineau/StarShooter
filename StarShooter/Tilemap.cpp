@@ -373,48 +373,6 @@ void Tilemap::update()
 
 void Tilemap::render(sf::RenderTarget& target, bool debug)
 {
-	// Tile Culling System
-	/*if(entity)
-	{
-		layer = 0;
-
-		fromX = entity->getGridPosition(gridSizeI).x - 1;
-		if (fromX < 0)
-			fromX = 0;
-		else if (fromX > static_cast<int>(maxSizeWorldGrid.x))
-			fromX = maxSizeWorldGrid.x;
-
-		toX = entity->getGridPosition(gridSizeI).x + 3;
-		if (toX < 0)
-			toX = 0;
-		else if (toX > static_cast<int>(maxSizeWorldGrid.x))
-			toX = maxSizeWorldGrid.x;
-
-		fromY = entity->getGridPosition(gridSizeI).y - 1;
-		if (fromY < 0)
-			fromY = 0;
-		else if (fromY > static_cast<int>(maxSizeWorldGrid.y))
-			fromY = maxSizeWorldGrid.y;
-
-		toY = entity->getGridPosition(gridSizeI).y + 3;
-		if (toY < 0)
-			toY = 0;
-		else if (toY > static_cast<int>(maxSizeWorldGrid.y))
-			toY = maxSizeWorldGrid.y;
-
-		for (int x = this->fromX; x < this->toX; x++)
-		{
-			for (int y = this->fromY; y < this->toY; y++)
-			{
-				this->map[x][y][this->layer]->render(target);
-				if (map[x][y][layer] != nullptr && this->map[x][y][this->layer]->getCollision())
-				{
-					this->collisionBox.setPosition(this->map[x][y][this->layer]->getPosition());
-					target.draw(this->collisionBox);
-				}
-			}
-		}
-	}*/
 	for (auto& x : map)
 	{
 		for (auto& y : x)
