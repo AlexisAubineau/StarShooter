@@ -46,6 +46,7 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
  - Enemies
  - Component (Projectile / EnemySpawner)
  - Factory Components (Debut)
+ - Collisions avec les GameObjects
  - Sprites (Players, Enemis, Bullet)
  - Graphics (Menu Principal)
 
@@ -69,7 +70,7 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
  - Path finding A* des mobs plus complexe que qu'attendu
  - Gestion des mobs par types, pouvoir faire spawn le type de mob que l'on voulait en se basant sur le système des projectiles marchait pas très bien dans ses debuts.
  - Mauvaise comprehension du design pattern Factory, j'ai essaiyé mais j'ai vraiment pas compris comment ça marche avec les templates.
-
+ - Faire disparaitre les objets qui rentrent en collisions, on est capable de savoir que les objets collisionent et qui collisione avec qui mais pas de les retirer, ce qui crée de gros lags.
  
     
  #### Alexis :
