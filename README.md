@@ -42,6 +42,12 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
 
 ### Travail réalisé par Patrick :
 
+- Projectiles
+ - Enemies
+ - Component (Projectile / EnemySpawner)
+ - Factory Components (Debut)
+ - Sprites (Players, Enemis, Bullet)
+ - Graphics (Menu Principal)
 
 ### Travail réalisé par Alexis :
 
@@ -58,6 +64,11 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
 ## Difficultés rencontré :
 
  #### Patrick :
+ 
+ - Path finding A* des mobs plus complexe que qu'attendu
+ - Gestion des mobs par types, pouvoir faire spawn le type de mob que l'on voulait en se basant sur le système des projectiles marchait pas très bien dans ses debuts.
+ - Mauvaise comprehension du design pattern Factory, j'ai essaiyé mais j'ai vraiment pas compris comment ça marche avec les templates.
+
  
     
  #### Alexis :
