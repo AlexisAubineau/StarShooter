@@ -29,7 +29,7 @@ public:
 	const sf::String fontPath = "Fonts/Dosis-Light.ttf";
 
 	// Tilemap scene
-	const sf::String tilemapSave = "test.slmp";
+	const sf::String tilemapSave = "Save/world.slmp";
 	
 	~Config() = default;
 };

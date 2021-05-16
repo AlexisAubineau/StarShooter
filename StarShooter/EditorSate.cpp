@@ -238,9 +238,9 @@ void EditorState::updatePauseMenuButtons()
 	if (pause_menu->isButtonPressed("EXIT_STATE"))
 		endState();
 	if (pause_menu->isButtonPressed("SAVE_FILE"))
-		tilemap->saveToFile("test.slmp");
+		tilemap->saveToFile(config->tilemapSave);
 	if (pause_menu->isButtonPressed("LOAD_FILE"))
-		tilemap->loadFromFile("test.slmp");
+		tilemap->loadFromFile(config->tilemapSave);
 }
 
 void EditorState::update(const float& dt)

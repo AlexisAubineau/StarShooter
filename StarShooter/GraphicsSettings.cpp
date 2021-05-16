@@ -2,6 +2,7 @@
 
 GraphicsSettings::GraphicsSettings()
 {
+	//Initializer Variables
 	title = "DEFAULT";
 	resolution = sf::VideoMode::getDesktopMode();
 	fullscreen = false;
