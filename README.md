@@ -59,14 +59,6 @@ Pour ce projet nous avons constitué une équipe de 2 personnes:
 
  #### Patrick :
  
-  - Le moteur:
-    * Création des differents outils: GameObject, GameObjectManager
-- Normal Enemy:
-    * Du mal a leur donner un patern et leur faire tirer des projectiles
-    * Gestion des projectiles enemis
-- Enemy Wave Spawner:
-    * Gros mal a spawn des mobs en vagues, 
-    * Gerer les collisions des mobs par rapports aux balles
     
  #### Alexis :
  
