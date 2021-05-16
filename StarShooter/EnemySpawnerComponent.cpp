@@ -64,25 +64,6 @@ void EnemySpawnerComponent::setEnemyTexture(std::string texturename, std::string
 	}
 }
 
-void EnemySpawnerComponent::deleteEnemy(bool colliding, EnemyMaster* enemy)
-{
-	if(colliding)
-	{
-		auto it = m_EnemyList.begin();
-		while (it != m_EnemyList.end())
-		{
-			if((*it) == enemy)
-			{
-				it = m_EnemyList.erase(it);
-			}
-			else
-			{
-				++it;
-			}
-		}
-	}
-}
-
 void EnemySpawnerComponent::update(const float& dt)
 {
 	for (EnemyMaster* element : m_EnemyList)

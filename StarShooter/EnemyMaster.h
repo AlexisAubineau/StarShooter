@@ -37,6 +37,7 @@ public:
 	virtual void render(sf::RenderTarget& target);
 	
 	//Initalizers
+	void initVariables();
 	void initComponents();
 	void initTexture(std::string m_textureName, std::string m_pathname);
 	void setAnimation(std::string m_animationKey,

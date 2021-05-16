@@ -77,3 +77,10 @@ void EnemyMaster::render(sf::RenderTarget& target)
 	projectileComponent->render(target);
 	hitboxComponent->render(&target);
 }
+
+void EnemyMaster::initVariables()
+{
+	max_life = 100.f;
+	current_life = max_life;
+	tile_damage = 8.f;
+}

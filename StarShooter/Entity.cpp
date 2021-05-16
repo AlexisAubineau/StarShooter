@@ -115,9 +115,9 @@ void Entity::stopVelocityY()
 		movement_component->stopVelocityY();
 }
 
-float Entity::Damage()
+float Entity::tileDamage()
 {
-	current_life = current_life - damage;
+	current_life = current_life - tile_damage;
 	std::cout << current_life << std::endl;
 	return current_life;
 }

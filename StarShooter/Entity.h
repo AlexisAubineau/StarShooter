@@ -24,7 +24,7 @@ public:
 
 	float max_life;
 	float current_life;
-	float damage;
+	float tile_damage;
 
 
 	//Component functions
@@ -48,7 +48,7 @@ public:
 	virtual void stopVelocity();
 	virtual void stopVelocityX();
 	virtual void stopVelocityY();
-	virtual float Damage();
+	virtual float tileDamage();
 
 	virtual void update(const float& dt);
 	virtual void render(sf::RenderTarget& target) = 0;

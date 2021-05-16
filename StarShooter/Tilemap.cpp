@@ -307,7 +307,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityY();
 						entity->setPosition(entityBounds.left, wallBounds.top - entityBounds.height);
-						entity->Damage();
+						entity->tileDamage();
 					}
 
 					//Top collision
@@ -319,7 +319,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityY();
 						entity->setPosition(entityBounds.left, wallBounds.top + wallBounds.height);
-						entity->Damage();
+						entity->tileDamage();
 					}
 
 					//Right collision
@@ -331,7 +331,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityX();
 						entity->setPosition(wallBounds.left - entityBounds.width, entityBounds.top);
-						entity->Damage();
+						entity->tileDamage();
 					}
 
 					//Left collision
@@ -343,7 +343,7 @@ void Tilemap::updateCollision(Entity* entity, const float& dt)
 					{
 						entity->stopVelocityX();
 						entity->setPosition(wallBounds.left + wallBounds.width, entityBounds.top);
-						entity->Damage();
+						entity->tileDamage();
 					}
 					//std::cout << colliding << std::endl;
 				}

@@ -9,7 +9,7 @@ void Player::initVariables()
 {
 	max_life = 200.f;
 	current_life = max_life;
-	damage = 1.f;
+	tile_damage = 1.f;
 }
 
 void Player::initComponents()

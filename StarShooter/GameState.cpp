@@ -145,10 +145,6 @@ void GameState::updateTileMap(const float& dt)
 		{
 			if (element != nullptr)
 				tilemap->updateCollision(element, dt);
-			/*if (tilemap->colliding)
-			{
-				EnemyType1Spawner->deleteEnemy(tilemap->colliding, element);
-			}*/
 		}
 	}
 
