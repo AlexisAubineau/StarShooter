@@ -98,6 +98,11 @@ GameState::GameState(StateData* state_data)
 	initGUI();
 	initPauseMenu();
 	initTilemap();
+	
+	for (EnemyMaster* element : EnemyType1Spawner->getEnemiesList())
+	{
+		GameObjects.push_back(element);
+	}
 }
 
 GameState::~GameState()
@@ -168,6 +173,7 @@ void GameState::update(const float& dt)
 	if (!paused) // Resume update
 	{
 		player->update(dt);
+		player->setCollisionEnable(true, GameObjects);
 		updateView(dt);
 		EnemyType1Spawner->update(dt);
 		player_gui->update(dt);

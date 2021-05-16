@@ -30,6 +30,7 @@ public:
 	//Component functions
 	void setTexture(sf::Texture& texture);
 	void setHitbox(HitboxComponent* hitbox);
+	HitboxComponent* GetHitbox();
 	void setMovement(MovementComponent* movement);
 
 	//Accessors
@@ -42,9 +43,10 @@ public:
  	//Modifiers
 	virtual float MaxLife(float m_max_life);
 	virtual float CurrentLife(float m_current_life);
+ 	virtual void setPosition(const float x, const float y);
  	
 	//Functions
-	virtual void setPosition(const float x, const float y);
+	
 	virtual void stopVelocity();
 	virtual void stopVelocityX();
 	virtual void stopVelocityY();

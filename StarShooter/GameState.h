@@ -25,6 +25,8 @@ private:
 	PauseMenu* pause_menu;
 	PlayerGUI* player_gui;
 
+	std::list<Entity*> GameObjects;
+
 	sf::Font font;
 
 	Tilemap* tilemap;

@@ -85,6 +85,11 @@ void Player::updateProjectileCollision(Tilemap* tilemap, const float& dt)
 	}
 }
 
+void Player::setCollisionEnable(bool state, std::list<Entity*> Entities)
+{
+	hitboxComponent->SetCollisionEnable(state,Entities);
+}
+
 // Functions
 
 void Player::update(const float& dt)

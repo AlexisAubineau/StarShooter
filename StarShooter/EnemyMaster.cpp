@@ -11,6 +11,7 @@ void EnemyMaster::initComponents()
 
 	// Player Hitbox Component
 	hitboxComponent = component->createHitboxComponent(component->sprite, 0, 0, 80, 60, true);
+	hitboxComponent->setTag("Enemy");
 }
 
 void EnemyMaster::initTexture(std::string m_textureName, std::string m_pathname)

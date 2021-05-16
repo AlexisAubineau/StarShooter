@@ -1,5 +1,10 @@
 #include "HitboxComponent.h"
 
+#include <iostream>
+
+#include "Entity.h"
+
+
 HitboxComponent::HitboxComponent(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height, bool isDebug)
 	: sprite(sprite), offsetX(offset_x), offsetY(offset_y)
 {
@@ -50,11 +55,46 @@ void HitboxComponent::setPosition(const float x, const float y)
 	sprite.setPosition(x - offsetX, y - offsetY);
 }
 
+
+void HitboxComponent::SetCollisionEnable(bool state,std::list<Entity*> EntityList)
+{
+	if (state)
+	{
+		for (Entity* element : EntityList)
+		{
+			if(Intersets(element->getGlobalBounds()))
+			{
+				std::cout<< "I'm being touched." << std::endl;
+				CollisionTagList.push_back(CheckColliderInfo(element->GetHitbox()));
+				std::cout << CheckColliderInfo(element->GetHitbox()) << std::endl;
+			}
+		}
+	}
+}
+
+
+void HitboxComponent::setTag(std::string tag)
+{
+	m_tag = tag;
+}
+
 //Functions
 bool HitboxComponent::Intersets(const sf::FloatRect& frect)
 {
 	return hitbox.getGlobalBounds().intersects(frect);
 }
+
+
+
+std::string HitboxComponent::CheckColliderInfo(HitboxComponent* Collider)
+{
+	if (Intersets(Collider->hitbox.getGlobalBounds()))
+	{
+		std::string collidertag = Collider->m_tag;
+		return  collidertag;
+	}
+}
+
 
 void HitboxComponent::update()
 {

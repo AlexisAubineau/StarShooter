@@ -26,6 +26,11 @@ void Entity::setHitbox(HitboxComponent* hitbox)
 	hitbox_component = hitbox;
 }
 
+HitboxComponent* Entity::GetHitbox()
+{
+	return  hitbox_component;
+}
+
 void Entity::setMovement(MovementComponent* movement)
 {
 	movement_component = movement;
@@ -88,7 +93,6 @@ float Entity::CurrentLife(float m_current_life)
 	return  m_current_life;
 }
 
-//Functions
 void Entity::setPosition(const float x, const float y)
 {
 	if (hitbox_component)
@@ -96,6 +100,9 @@ void Entity::setPosition(const float x, const float y)
 	else
 		component->sprite.setPosition(x, y);
 }
+
+
+//Functions
 
 void Entity::stopVelocity()
 {

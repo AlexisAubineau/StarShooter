@@ -44,6 +44,7 @@ public:
 	void move(const float dir_x, const float dir_y, const float& dt);
 	void attack();
 	void updateProjectileCollision(Tilemap* tilemap, const float& dt);
+	void setCollisionEnable(bool state, std::list<Entity*> Entities);
 	void update(const float& dt);
 	void render(sf::RenderTarget& target);
 };
